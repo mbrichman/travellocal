@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  category: MyString
+  place_id: 1
+  review_text: MyText
+  review_date: 2013-05-20
+  user_id: 1
+
+two:
+  category: MyString
+  place_id: 1
+  review_text: MyText
+  review_date: 2013-05-20
+  user_id: 1
