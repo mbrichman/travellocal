@@ -5,11 +5,31 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
 
+<h2>My Reviews</h2>
+<ul>
+  <% @user.reviews.each do |review| %>
+  <li><%= link_to review.place.name, review %></li>
+  <% end %>
+</ul>
+
+<h2>My Friend's Reviews</h2>
+<ul>
+  <% @user.nth_level(1).each do |connection| %>
+    <% connection.reviews.each do |review| %>
+      <li><%= link_to connection.name, connection %> reviewed <%= link_to review.place.name, review %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h2>Their Friend's Reviews</h2>
+<ul>
+  <% @user.nth_level(2).each do |connection| %>
+    <% connection.reviews.each do |review| %>
+      <li><%= link_to connection.name, connection %> reviewed <%= link_to review.place.name, review %></li>
+    <% end %>
+  <% end %>
+</ul>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

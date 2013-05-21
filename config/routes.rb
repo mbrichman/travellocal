@@ -1,5 +1,11 @@
 Travellocal::Application.routes.draw do
 
+  resources :places
+
+
+  resources :cities
+
+
   resources :reviews
 
 
