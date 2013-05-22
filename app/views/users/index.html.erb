@@ -8,7 +8,7 @@
 </ul>
 <% end %>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -17,7 +17,6 @@
       <th>1st</th>
       <th>2nd</th>
       <th>3rd</th>
-      <th></th>
     </tr>
   </thead>
 
@@ -30,12 +29,15 @@
       <td><%= user.get_connections_by_level(1) %></td>
       <td><%= user.get_connections_by_level(2) %></td>
       <td><%= user.get_connections_by_level(3) %></td>
-      <td></td>
-            <% unless signed_in? && current_user == user %>
-        <td><%= form_tag connect_path, method: 'post' do %>
+      <% if signed_in? && current_user == user %>
+        <td></td>
+        <% else %>
+        <td>
+          <%= form_tag connect_path, method: 'post' do %>
           <%= hidden_field_tag :connection_id, user.id %>
-          <%= submit_tag 'Connect' %></td>
-        <% end %>
+          <%= submit_tag 'Connect' %>
+          <% end %>
+        </td>
       <% end %>
 
 
