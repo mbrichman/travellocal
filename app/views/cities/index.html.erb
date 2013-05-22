@@ -10,7 +10,7 @@
 
 <% @cities.each do |city| %>
   <tr>
-    <td><%= city.name %></td>
+    <td><%= fancy_cap(city.name) %></td>
     <% if signed_in?  %>
       <td><%= link_to 'Show', city, class: 'btn btn-success' %></td>
       <td><%= link_to 'Edit', edit_city_path(city), class: 'btn btn-warning' %></td>
