@@ -15,21 +15,22 @@
 
 <h3>My Friend's Reviews</h3>
 <ul>
-  <% @user.nth_level(1).each do |connection| %>
-    <% connection.reviews.each do |review| %>
-      <li><%= link_to user_connection.name, user_connection %> reviewed <%= link_to review.place.name, review %></li>
+  <% @user.nth_level(2).each do |contact| %>
+    <% contact.reviews.each do |review| %>
+      <li><%= link_to contact.name.capitalize, contact %> reviewed <%= link_to review.place.name, review %></li>
     <% end %>
   <% end %>
 </ul>
 
 <h3>Their Friend's Reviews</h3>
 <ul>
-  <% @user.nth_level(2).each do |connection| %>
-    <% user_connection.reviews.each do |review| %>
-      <li><%= link_to user_connection.name, user_connection %> reviewed <%= link_to review.place.name, review %></li>
+  <% @user.nth_level(3).each do |contact| %>
+    <% contact.reviews.each do |review| %>
+      <li><%= link_to contact.name.capitalize, contact %> reviewed <%= link_to review.place.name, review %></li>
     <% end %>
   <% end %>
 </ul>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

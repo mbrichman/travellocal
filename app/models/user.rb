@@ -8,6 +8,13 @@ class User < ActiveRecord::Base
   has_many :connections, :dependent => :destroy
   has_many :reviews
 
+  before_save :downcase_form_input
+
+  def downcase_input
+    self.name = self.name.downcase
+    self.email = self.email.downcase
+  end
+
   def second_level
     second_level = Array.new
     self.connections.each do |c|
@@ -28,6 +35,10 @@ class User < ActiveRecord::Base
       end
     end
     return array
+  end
+
+  def get_connections_by_level(level)
+    self.nth_level(level).map {|user| user.name.capitalize}.join(' ')
   end
 
 end

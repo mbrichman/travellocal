@@ -24,12 +24,12 @@
   <tbody>
   <% @users.each do |user| %>
     <tr>
-      <td><%= link_to user.name, user_path(user.id) %></td>
+      <td><%= link_to user.name.capitalize, user_path(user.id) %></td>
       <td><%= user.email %></td>
       <td><%= user.connections.count %></td>
-      <td><%= user.connections.map {|user| user.user_connection.name }.join(' ') %></td>
-      <td><%= user.nth_level(2).map {|user| user.name}.join(' ') %></td>
-      <td><%= user.nth_level(3).map {|user| user.name}.join(' ') %></td>
+      <td><%= user.get_connections_by_level(1) %></td>
+      <td><%= user.get_connections_by_level(2) %></td>
+      <td><%= user.get_connections_by_level(3) %></td>
       <td></td>
             <% unless signed_in? && current_user == user %>
         <td><%= form_tag connect_path, method: 'post' do %>
