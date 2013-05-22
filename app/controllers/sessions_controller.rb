@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_name(params[:name])
+    @user = User.find_by_email(params[:email])
     if @user.present? && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to @user
@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to users_url, notice: "Logged Out"
+    redirect_to root_url, notice: "Logged Out"
   end
 end
