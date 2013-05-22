@@ -1,20 +1,25 @@
-<h1>Log In</h1>
 
 <% if notice.present? %>
 <div class="notice">
 <%= notice %>
 </div>
 <% end %>
-<div>
-  <%= form_tag sessions_create_url do %>
-    <div>
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
+<fieldset><div>
+  <legend>Sign in to TravelLocal</legend>
+  <%= form_tag sessions_create_url, class: "form-horizontal" do %>
+
+  <div class="control-group">
+    <%= label_tag :email, 'Email',class: "control-label" %>
+    <div class="controls">
+      <%= text_field_tag :email %>
+    </div>
   </div>
 
-  <div>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+  <div class="control-group">
+    <%= label_tag :password, 'Password',class: "control-label" %>
+    <div class="controls">
+      <%= password_field_tag :password %>
+    </div>
   </div>
 
   <%= submit_tag 'Login' %>
@@ -22,4 +27,4 @@
   <% end %>
 
 
-</div>
+</div></fieldset>
