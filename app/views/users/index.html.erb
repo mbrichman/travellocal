@@ -27,7 +27,7 @@
       <td><%= link_to user.name, user_path(user.id) %></td>
       <td><%= user.email %></td>
       <td><%= user.connections.count %></td>
-      <td><%= user.connections.map {|user| user.connection.name }.join(' ') %></td>
+      <td><%= user.connections.map {|user| user.user_connection.name }.join(' ') %></td>
       <td><%= user.nth_level(2).map {|user| user.name}.join(' ') %></td>
       <td><%= user.nth_level(3).map {|user| user.name}.join(' ') %></td>
       <td></td>

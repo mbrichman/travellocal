@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   def second_level
     second_level = Array.new
     self.connections.each do |c|
-      c.connection.connections.each do |second|
-        second_level << second.connection
+      c.user_connection.connections.each do |second|
+        second_level << second.user_connection
       end
     end
     return second_level
@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
     level = level - 1
     connections.each do |c|
       if level == 0
-        array << c.connection
+        array << c.user_connection
       else
-        nth_level(level, array, c.connection.connections)
+        nth_level(level, array, c.user_connection.connections)
       end
     end
     return array

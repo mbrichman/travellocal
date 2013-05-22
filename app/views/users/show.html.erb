@@ -17,7 +17,7 @@
 <ul>
   <% @user.nth_level(1).each do |connection| %>
     <% connection.reviews.each do |review| %>
-      <li><%= link_to connection.name, connection %> reviewed <%= link_to review.place.name, review %></li>
+      <li><%= link_to user_connection.name, user_connection %> reviewed <%= link_to review.place.name, review %></li>
     <% end %>
   <% end %>
 </ul>
@@ -25,8 +25,8 @@
 <h3>Their Friend's Reviews</h3>
 <ul>
   <% @user.nth_level(2).each do |connection| %>
-    <% connection.reviews.each do |review| %>
-      <li><%= link_to connection.name, connection %> reviewed <%= link_to review.place.name, review %></li>
+    <% user_connection.reviews.each do |review| %>
+      <li><%= link_to user_connection.name, user_connection %> reviewed <%= link_to review.place.name, review %></li>
     <% end %>
   <% end %>
 </ul>
