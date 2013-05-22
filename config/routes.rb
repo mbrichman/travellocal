@@ -1,5 +1,12 @@
 Travellocal::Application.routes.draw do
 
+
+  root to: 'Home#index'
+
+
+  get "home/index"
+
+
   resources :places
 
 

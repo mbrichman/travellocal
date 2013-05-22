@@ -1,8 +1,17 @@
 class PlacesController < ApplicationController
+
+before_filter :authorize_user, except: [:index, :show]
+
+def authorize_user
+  unless signed_in?
+    redirect_to sessions_new_url, notice: "Please sign in to do that."
+  end
+end
+
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    @places = Place.search(params[:search])
 
     respond_to do |format|
       format.html # index.html.erb

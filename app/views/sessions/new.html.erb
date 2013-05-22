@@ -1,4 +1,10 @@
 <h1>Log In</h1>
+
+<% if notice.present? %>
+<div class="notice">
+<%= notice %>
+</div>
+<% end %>
 <div>
   <%= form_tag sessions_create_url do %>
     <div>

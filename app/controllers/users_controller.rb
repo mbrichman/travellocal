@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
 
+before_filter :authorize_user, except: [:new]
+
+def authorize_user
+  unless signed_in?
+    redirect_to sessions_new_url, notice: "Please sign in to do that."
+  end
+end
+
   def connect
     @connection = Connection.create(user_id: current_user.id, connection_id: params[:connection_id])
     redirect_to users_path, notice: 'Connection added'

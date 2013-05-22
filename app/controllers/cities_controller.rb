@@ -1,4 +1,13 @@
 class CitiesController < ApplicationController
+
+  before_filter :authorize_user, except: [:index, :show]
+
+def authorize_user
+  unless signed_in?
+    redirect_to sessions_new_url, notice: "Please sign in to do that."
+  end
+end
+
   # GET /cities
   # GET /cities.json
   def index

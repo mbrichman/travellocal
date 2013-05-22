@@ -25,6 +25,15 @@
   <%= @place.neighborhood %>
 </p>
 
+<h2>Reviews</h2>
+<div>
+  <ul>
+    <% @place.reviews.each do |review| %>
+    <li><%= review.review_text %></li>
+    <% end %>
+  </ul>
+</div>
+
 
 <%= link_to 'Edit', edit_place_path(@place) %> |
 <%= link_to 'Back', places_path %>

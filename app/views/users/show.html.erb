@@ -6,14 +6,14 @@
 </p>
 
 
-<h2>My Reviews</h2>
+<h3>My Reviews</h3>
 <ul>
   <% @user.reviews.each do |review| %>
   <li><%= link_to review.place.name, review %></li>
   <% end %>
 </ul>
 
-<h2>My Friend's Reviews</h2>
+<h3>My Friend's Reviews</h3>
 <ul>
   <% @user.nth_level(1).each do |connection| %>
     <% connection.reviews.each do |review| %>
@@ -22,7 +22,7 @@
   <% end %>
 </ul>
 
-<h2>Their Friend's Reviews</h2>
+<h3>Their Friend's Reviews</h3>
 <ul>
   <% @user.nth_level(2).each do |connection| %>
     <% connection.reviews.each do |review| %>

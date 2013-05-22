@@ -1,6 +1,6 @@
 <h1>Listing cities</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
     <th></th>
@@ -11,13 +11,17 @@
 <% @cities.each do |city| %>
   <tr>
     <td><%= city.name %></td>
-    <td><%= link_to 'Show', city %></td>
-    <td><%= link_to 'Edit', edit_city_path(city) %></td>
-    <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if signed_in? && current_user == User.find(1) %>
+      <td><%= link_to 'Show', city, class: 'btn btn-success' %></td>
+      <td><%= link_to 'Edit', edit_city_path(city), class: 'btn btn-warning' %></td>
+      <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New City', new_city_path %>
+<% if signed_in? && current_user == User.find(1) %>
+  <%= link_to 'New City', new_city_path, class: 'btn' %>
+<% end %>

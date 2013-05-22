@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_secure_password
   attr_accessible :name, :email, :password, :password_confirmation
 
+  validates :name, :email, :password, presence: true
+  validates :email, uniqueness: true
+
   has_many :connections
   has_many :reviews
 

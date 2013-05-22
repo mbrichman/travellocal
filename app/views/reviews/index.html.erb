@@ -1,31 +1,25 @@
 <h1>Listing reviews</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>Category</th>
     <th>Place</th>
     <th>Review text</th>
     <th>Review date</th>
     <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @reviews.each do |review| %>
   <tr>
     <td><%= review.category %></td>
-    <td><%= review.place_id %></td>
+    <td><%= link_to review.place.name, review.place %></td>
     <td><%= review.review_text %></td>
-    <td><%= review.review_date %></td>
-    <td><%= review.user_id %></td>
-    <td><%= link_to 'Show', review %></td>
-    <td><%= link_to 'Edit', edit_review_path(review) %></td>
-    <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= review.review_date.strftime('%b %e, %y') %></td>
+    <td><%= review.user.name %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Review', new_review_path %>
+<%= link_to 'New Review', new_review_path, class: 'btn' %>

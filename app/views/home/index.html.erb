@@ -1,0 +1,27 @@
+<div class='container-fluid'>
+  <header><h1 class="text-center">When You Travel &mdash; Travel Local!</h1></header>
+<section class="span3">
+Select from the following categories:
+</section>
+<section class="span4"><h3>Featured Place 1</h3></section>
+<section class="span4"><h3>Featured Place 2</h3></section>
+<section><h3>Recent Reviews</h3>
+<% @reviews = Review.all %>
+<ul class="unstyled">
+<% @reviews.each do |review| %>
+<li>  <%= review.review_text   %>
+</li><% end %>
+</ul>
+
+
+</section>
+
+
+
+
+
+
+
+
+</div>
+
