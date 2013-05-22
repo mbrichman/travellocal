@@ -1,11 +1,17 @@
 <h1>Users</h1>
 
-<% if @follower.try(:errors) %>
-<ul>
-  <% @follower.errors.full_messages.each do |msg| %>
-    <li><%= msg  %></li>
+<% if notice.present? %>
+<div>
+<%= notice %>
+</div>
+<% end %>
+
+<% if @connection.try(:errors) %>
+
+  <% @connection.errors.full_messages.each do |msg| %>
+    <%= msg  %>
   <% end %>
-</ul>
+
 <% end %>
 
 <table class="table table-hover">

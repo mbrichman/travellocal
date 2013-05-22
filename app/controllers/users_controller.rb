@@ -9,8 +9,18 @@ def authorize_user
 end
 
   def connect
-    @connection = Connection.create(user_id: current_user.id, connection_id: params[:connection_id])
-    redirect_to users_path, notice: 'Connection added'
+    @connection = Connection.new(user_id: current_user.id, connection_id: params[:connection_id])
+
+    respond_to do |format|
+      if @connection.save
+        format.html { redirect_to users_url, notice: 'Connection added.' }
+        format.json { render json: @users }
+      else
+        @users = User.all
+        format.html { render action: "index" }
+        format.json { render json: @connection.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /users
