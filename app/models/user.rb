@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :name, :email, :password, presence: true
   validates :email, uniqueness: true
 
-  has_many :connections
+  has_many :connections, :dependent => :destroy
   has_many :reviews
 
   def second_level

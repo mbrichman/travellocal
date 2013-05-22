@@ -36,8 +36,7 @@ Place.create([
 
 
 
-Review.create([
-  { :category => "", :place_id => 1, :review_text => "I love this place. The burgers are fantastic and there is always a rotating selection of beers that are top notch.", :review_date => "2013-05-21", :user_id => 1, :created_at => "2013-05-21 02:06:17", :updated_at => "2013-05-21 02:06:17" },
+Review.create(:category => "", :place_id => 1, :review_text => "I love this place. The burgers are fantastic and there is always a rotating selection of beers that are top notch.", :review_date => "2013-05-21", :user_id => 1, :created_at => "2013-05-21 02:06:17", :updated_at => "2013-05-21 02:06:17" ),
   { :category => "", :place_id => 4, :review_text => "This is probably my favorite restaurant in the city right now. The concept is Japanese street food. The dishes are original and unusual and the execution is fantastic. Their cocktail program is great.\r\n\r\nA definite 'do not miss'!", :review_date => "2013-05-21", :user_id => 2, :created_at => "2013-05-21 02:08:21", :updated_at => "2013-05-21 02:08:21" },
   { :category => "", :place_id => 3, :review_text => "Great place to go when you're looking for good food and good wine. The food is a mix of small plates and typical entrees. They also really know their wines and the staff is always ready to suggest a great pairing with your meal. \r\n\r\nTheir chicken dish, which always changes, is always fantastic!", :review_date => "2013-05-21", :user_id => 5, :created_at => "2013-05-21 02:13:16", :updated_at => "2013-05-21 02:13:16" },
   { :category => "", :place_id => 2, :review_text => "The sausages are good!", :review_date => "2013-05-21", :user_id => 10, :created_at => "2013-05-21 02:49:15", :updated_at => "2013-05-21 02:49:15" }

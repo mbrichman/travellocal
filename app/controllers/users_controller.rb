@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-before_filter :authorize_user, except: [:new]
+before_filter :authorize_user, except: [:new, :create]
 
 def authorize_user
   unless signed_in?
@@ -58,6 +58,7 @@ end
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
