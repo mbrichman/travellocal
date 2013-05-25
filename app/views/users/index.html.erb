@@ -1,18 +1,19 @@
 <h1>Users</h1>
 
 <% if notice.present? %>
-<div>
+<div class="alert alert-success">
 <%= notice %>
 </div>
 <% end %>
 
-<% if @connection.try(:errors) %>
+<div class="alert alert-error">
+  <% if @connection.try(:errors) %>
 
   <% @connection.errors.full_messages.each do |msg| %>
     <%= msg  %>
   <% end %>
 
-<% end %>
+<% end %></div>
 
 <table class="table table-hover">
   <thead>
