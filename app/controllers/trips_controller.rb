@@ -35,12 +35,14 @@ class TripsController < ApplicationController
   # GET /trips/1/edit
   def edit
     @trip = Trip.find(params[:id])
+    @trip.user_id = current_user.id
   end
 
   # POST /trips
   # POST /trips.json
   def create
     @trip = Trip.new(params[:trip])
+    @trip.user_id = current_user.id
 
     respond_to do |format|
       if @trip.save

@@ -31,6 +31,13 @@
   <% end %>
 </ul>
 
+<h3>Upcoming Trips</h3>
+<ul>
+  <% @user.trips.each do |trip| %>
+    <li><%= link_to trip.name.capitalize, trip %> starting on <%= trip.start_date.strftime('%A, %B %e %Y') %></li>
+  <% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

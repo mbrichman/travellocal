@@ -15,9 +15,10 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= f.label :city %><br />
+    <%= f.collection_select :city_id, City.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :start_date %><br />

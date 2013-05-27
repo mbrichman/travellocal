@@ -18,24 +18,24 @@
         <div class="nav-collapse">
 
           <ul class="nav pull-right">
+              <li><%= link_to 'Reviews', reviews_url %></li>
+              <li><%= link_to 'Cities', cities_url %></li>
+              <li><%= link_to 'Places', places_url %></li>
             <% if signed_in? %>
-            <li><%= link_to 'Users', users_url %></li>
-            <li><%= link_to 'Reviews', reviews_url %></li>
-            <li><%= link_to 'Cities', cities_url %></li>
-            <li><%= link_to 'Places', places_url %></li>
-        <%= form_tag places_path,class: 'navbar-search pull-left' , method: 'get' do %>
-        <%= text_field_tag :search, nil, class: "search-query span3", placeholder: 'Search Places by Neighborhood' %>
-        <% end %>
+              <li><%= link_to 'Users', users_url %></li>
+              <%= form_tag places_path,class: 'navbar-search pull-left' , method: 'get' do %>
+                <%= text_field_tag :search, nil, class: "search-query span3", placeholder: 'Search Places by Neighborhood' %>
+              <% end %>
             <li><%= link_to 'Log Out', sessions_destroy_url %></li>
             <li><%= link_to current_user.name.capitalize, current_user %></li>
 
-      <% else %>
-        <li><%= link_to 'Log In', sessions_new_url %></li>
-        <li><%= link_to 'Sign Up', new_user_url %></li>
+            <% else %>
                 <%= form_tag '/search',class: 'navbar-search pull-left' , method: 'get' do %>
-        <%= text_field_tag :search, nil, class: "search-query span3", placeholder: 'Search Places' %>
-        <% end %>
-      <% end %>
+                <%= text_field_tag :search, nil, class: "search-query span3", placeholder: 'Search Places' %>
+                <% end %>
+              <li><%= link_to 'Log In', sessions_new_url %></li>
+              <li><%= link_to 'Sign Up', new_user_url %></li>
+            <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

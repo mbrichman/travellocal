@@ -7,8 +7,14 @@ class User < ActiveRecord::Base
 
   has_many :connections, :dependent => :destroy
   has_many :reviews
+  has_many :trips, :dependent => :destroy
+  has_many :favorites, :dependent => :destroy
 
   before_save :downcase_form_input
+
+  def has_trip_to_city(city_id)
+    Trip.find_by_user_id(self.id).try(:city_id) == city_id
+  end
 
   def downcase_input
     self.name = self.name.downcase
