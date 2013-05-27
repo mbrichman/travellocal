@@ -6,7 +6,9 @@
   </div>
 <% end %>
 
-<%= @favorite.errors.full_messages %>
+<% if @favorite %>
+  <%= @favorite.errors.full_messages %>
+<% end %>
 
 <table class="table table-hover">
   <tr>
