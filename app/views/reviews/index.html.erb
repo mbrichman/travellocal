@@ -1,5 +1,13 @@
 <h1>Listing reviews</h1>
 
+<% if notice.present? %>
+  <div class='alert-success'>
+    <%= notice %>
+  </div>
+<% end %>
+
+<%= @favorite.errors.full_messages %>
+
 <table class="table table-hover">
   <tr>
     <th>Category</th>
@@ -7,6 +15,7 @@
     <th>Review text</th>
     <th>Review date</th>
     <th>User</th>
+    <th></th>
   </tr>
 
 <% @reviews.each do |review| %>
@@ -15,7 +24,8 @@
     <td><%= link_to review.place.name, review.place %></td>
     <td><%= review.review_text %></td>
     <td><%= review.review_date.strftime('%b %e, %y') %></td>
-    <td><%= review.user.name %></td>
+    <td><%= review.user.name.capitalize %></td>
+    <td><%= link_to "Favorite", favorites_path(place_id: review.place.id), method: 'post', class: 'btn' %></td>
   </tr>
 <% end %>
 </table>
