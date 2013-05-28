@@ -20,6 +20,7 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <th>Hometown</th>
       <th>Count</th>
       <th>1st</th>
       <th>2nd</th>
@@ -32,6 +33,7 @@
     <tr>
       <td><%= link_to user.name.capitalize, user_path(user.id) %></td>
       <td><%= user.email %></td>
+      <td><%= user.city.try(:name) %></td>
       <td><%= user.connections.count %></td>
       <td><%= user.get_connections_by_level(1) %></td>
       <td><%= user.get_connections_by_level(2) %></td>

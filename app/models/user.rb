@@ -1,16 +1,18 @@
 class User < ActiveRecord::Base
   has_secure_password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :city_id
 
-  validates :name, :email, :password, presence: true
+  validates :name, :email, presence: true
   validates :email, uniqueness: true
 
   has_many :connections, :dependent => :destroy
   has_many :reviews
   has_many :trips, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
+  has_many :authentications
+  belongs_to  :city
 
-  before_save :downcase_form_input
+  before_save :downcase_input
 
   def has_trip_to_city(city_id)
     Trip.find_by_user_id(self.id).try(:city_id) == city_id

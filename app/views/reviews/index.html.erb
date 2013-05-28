@@ -14,6 +14,7 @@
   <tr>
     <th>Category</th>
     <th>Place</th>
+    <th></th>
     <th>Review text</th>
     <th>Review date</th>
     <th>User</th>
@@ -24,6 +25,11 @@
   <tr>
     <td><%= review.category %></td>
     <td><%= link_to review.place.name, review.place %></td>
+    <% if review.user.city == review.place.city %>
+    <td><%= image_tag 'local.png', alt: 'Local Review' %></td>
+    <% else %>
+    <td><%= image_tag 'visitor-pass.png', size: '100x30' , alt: 'Visitor Review' %></td>
+    <% end %>
     <td><%= review.review_text %></td>
     <td><%= review.review_date.strftime('%b %e, %y') %></td>
     <td><%= review.user.name.capitalize %></td>

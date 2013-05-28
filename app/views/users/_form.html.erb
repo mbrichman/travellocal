@@ -19,6 +19,12 @@
       <%= f.text_field :email %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :city_id, 'Hometown', class: "control-label" %>
+    <div class="controls">
+      <%= f.collection_select :city_id, City.all, :id, :name, include_blank: true %>
+    </div>
+  </div>
 
   <div class="control-group">
     <%= f.label :name, class: "control-label" %>
@@ -42,7 +48,7 @@
   </div>
 
   <div class="controls">
-    <%= f.submit 'Create User', :class => 'btn' %>
+    <%= f.submit 'Update User', :class => 'btn' %>
     </div>
 
   </div></fieldset>
