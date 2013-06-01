@@ -1,0 +1,62 @@
+/* Navigation
+ **************************************************/
+.nav
+  margin-bottom: 0
+  &.nav-6
+    li, a
+      width: 13.9355742304%/*16.666666667-2.521008403-.2100840336*/
+      margin-right: 2.521008403%
+      padding: 1em 0
+      float: left
+      border: 1px solid #ddd
+      text-align: center
+      &:last-of-type
+        margin-right: 0
+
+/* Items
+ **************************************************/
+.items
+  margin: 0
+  padding: 0
+  list-style: none
+
+/* Featured Slides
+ **************************************************/
+#featured-slide
+  padding: 0 2em
+  position: relative
+  .item
+    a
+      display: block
+      width: 20%
+      padding: .5em 0
+      float: left
+      img
+        margin: 0 auto
+        //@include border-radius(3px)
+        border: .25em solid #ffffff
+        //@include box-shadow(0 0 3px 0 rgba(0,0,0,.25))
+  .carousel-control
+    top: 45%
+    left: 0
+    // @include border-radius(0)
+    border: 0
+    background: transparent
+    color: #000000
+    &:after
+      padding-right: .0875em
+      padding-bottom: .25em
+      content: ""
+      border-right: 1px solid #dddddd
+    &.right
+      right: 0
+      left: auto
+      &:after
+        border-right: 0
+      &:before
+        padding-bottom: .25em
+        content: ""
+        border-left: 1px solid #dddddd
+
+
+
