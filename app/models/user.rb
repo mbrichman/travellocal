@@ -21,8 +21,10 @@ class User < ActiveRecord::Base
   def friends_favorites
     @favorites = Array.new
     self.friends.each do |friend|
-      @favorites[friend.email] = friend.favorites.map { |fave| fave.place }
+      places = User.find(friend).favorites.map {|p| p.place.id }
+      @favorites << { :user => friend.id, :places => places }
     end
+    # returns array of hashes [ { :user => friend1, places => [place1, place2] }
     return @favorites
 
   end
