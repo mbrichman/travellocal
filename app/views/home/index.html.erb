@@ -1,5 +1,6 @@
 
 <div class="row-fluid">
+  <!-- if not logged-in -->
   <aside class="span3">
     <section>
       <h3>Hotel/Lodging</h3>
@@ -86,4 +87,60 @@
       <h3>Quick Results</h3>
     </section>
   </aside>
+  <!-- END if not logged-in -->
+
+  <!-- if logged-in -->
+  <aside class="span3">
+    <section>
+      <input type="text" placeholder="search..." />
+      <input type="submit" value="Search" class="btn btn-primary" />
+      <div>
+        <h3>Previous Trips</h3>
+        <ul class="items">
+          <li><time>May 02, 1980</time><p>Destination</p></li>
+          <li><time>May 02, 1980</time><p>Destination</p></li>
+          <li><time>May 02, 1980</time><p>Destination</p></li>
+          <li><time>May 02, 1980</time><p>Destination</p></li>
+          <li><time>May 02, 1980</time><p>Destination</p></li>
+        </ul>
+      </div>
+    </section>
+  </aside>
+  <div class="span9 primary">
+    <div id="featured-slide" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="active item">
+          <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/nature/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/nature/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+        </div>
+        <div class="item">
+          <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+          <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+        </div>
+      </div>
+      <a class="carousel-control left" href="#featured-slide" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#featured-slide" data-slide="next">&rsaquo;</a>
+    </div>
+    <section>
+      <h2>Previous Trip</h2>
+      <p>What you did</p>
+      <p>Where you went</p>
+      <p>Where you stayed</p>
+    </section>
+  </div>
+  <!-- END if logged-in -->
+
 </div>
