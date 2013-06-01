@@ -4,7 +4,7 @@
   margin-bottom: 0
   &.nav-6
     li, a
-      width: 13.9355742304%/*16.666666667-2.521008403-.2100840336*/
+      width: 13.9355742304% /*16.666666667-2.521008403-.2100840336*/
       margin-right: 2.521008403%
       padding: 1em 0
       float: left
@@ -22,6 +22,9 @@
 
 /* Featured Slides
  **************************************************/
+.carousel-indicators
+  li
+    cursor: pointer
 #featured-slide
   padding: 0 2em
   position: relative
@@ -57,6 +60,20 @@
         padding-bottom: .25em
         content: ""
         border-left: 1px solid #dddddd
+
+#business-slide
+  .item
+    poisition: relative
+    img
+      width: 100%
+    .slide-text
+      padding: .75em 1.5em
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      background: rgba(0,0,0,.7)
+      color: #ffffff
 
 
 
