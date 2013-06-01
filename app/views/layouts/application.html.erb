@@ -48,8 +48,9 @@
 
     <div class="row-fluid">
       <section class="span3 drop-down">
-        <%= form_for @city do |f| %>
-          <%= f.collection_select :id, City.all, :id, :name %>
+
+        <%= form_tag cities_path do %>
+          <%= select_tag :id, options_from_collection_for_select(City.all, :id, :name) %>
         <% end %>
       </section>
       <section class="span9 nav nav-6">
