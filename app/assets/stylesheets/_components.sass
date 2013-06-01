@@ -99,9 +99,12 @@
   .cols-1-3
     li
       +box-sizing(border-box)
-      width: 33.33%
+      display: inline-block
+      width: 32.75%
       padding: 0 16px 0 0
-      float: left
+      vertical-align: top
+      &:nth-child(3n+3)
+        padding: 0
 
 .seconday
   font-size: .875em
