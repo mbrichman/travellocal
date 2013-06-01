@@ -76,4 +76,44 @@
       color: #ffffff
 
 
+/* Grouped Forms
+ **************************************************/
+.filters
+  h5
+    margin-bottom: 0.4444444444em
+  .form-group
+    input[type="checkbox"]
+      display: inline-block
+      margin-right: .25em
+      margin-bottom: .5em
+    label
+      display: inline-block
+
+
+/* Listings
+ **************************************************/
+.listings
+  font-size: .875em
+  h5
+    margin-bottom: .5em
+  .cols-1-3
+    li
+      +box-sizing(border-box)
+      width: 33.33%
+      padding: 0 16px 0 0
+      float: left
+
+.seconday
+  font-size: .875em
+  .listings
+    .items
+      display: block
+      max-height: 360px
+      overflow-y: scroll
+      li
+        &:after
+          display: table
+          clear: both
+          float: none
+          content: ""
 
