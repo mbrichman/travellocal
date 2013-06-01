@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
 
   end
 
+  def last_trip
+    self.trips.last
+  end
+
   def has_trip_to_city(city_id)
     Trip.where(user_id: self.id, city_id: city_id)
   end

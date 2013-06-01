@@ -3,14 +3,16 @@
     <section>
       <input type="text" placeholder="search..." />
       <input type="submit" value="Search" class="btn btn-primary" />
-      <div>
-        <h3>Previous Trips</h3>
-        <ul class="items">
-          <% current_user.trips.each do |trip| %>
-            <li><time><%= trip.start_date %></time><p><%= link_to trip.name, trip %></p></li>
-          <% end %>
-        </ul>
-      </div>
+      <% if signed_in? %>
+        <div>
+          <h3>Previous Trips</h3>
+          <ul class="items">
+            <% current_user.trips.each do |trip| %>
+              <li><time><%= trip.start_date %></time><p><%= link_to trip.name, trip %></p></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </section>
   </aside>
   <div class="span6 primary row-fluid">
@@ -41,9 +43,8 @@
         <li>
           <img src="http://lorempixel.com/200/150/business/" />
           <div class="item-text">
-            <h5><%= place.name %></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h5><%= link_to place.name.titleize, place %></h5>
+            <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' %></p>
           </div>
         </li>
         <% end %>

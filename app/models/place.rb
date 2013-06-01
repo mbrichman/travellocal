@@ -1,7 +1,8 @@
 class Place < ActiveRecord::Base
-  attr_accessible :address, :city_id, :name, :neighborhood, :url
+  attr_accessible :address, :city_id, :name, :neighborhood, :url, :category_id, :description
   belongs_to :city
   has_many :reviews
+  belongs_to :category
 
   validates :address, :city_id, :name, :neighborhood, presence: true
 

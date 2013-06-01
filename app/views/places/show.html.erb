@@ -4,15 +4,19 @@
   <b>City:</b>
   <%= @place.city.name %>
 </p>
+<p>
+  <b>Category:</b>
+  <%= @place.category.try(:name) %>
+</p>
 
 <p>
   <b>Name:</b>
-  <%= @place.name %>
+  <%= @place.name.titleize %>
 </p>
 
 <p>
   <b>Address:</b>
-  <%= @place.address %>
+  <%= @place.address.titleize %>
 </p>
 
 <p>
@@ -22,7 +26,11 @@
 
 <p>
   <b>Neighborhood:</b>
-  <%= @place.neighborhood.capitalize %>
+  <%= @place.neighborhood.titleize %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @place.try(:description) %>
 </p>
 
 <h2>Reviews</h2>

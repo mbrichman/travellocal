@@ -6,16 +6,16 @@
       <section>
         <input type="text" placeholder="search..." />
         <input type="submit" value="Search" class="btn btn-primary" />
-        <div>
-          <h3>Previous Trips</h3>
-          <ul class="items">
-            <li><time>May 02, 1980</time><p>Destination</p></li>
-            <li><time>May 02, 1980</time><p>Destination</p></li>
-            <li><time>May 02, 1980</time><p>Destination</p></li>
-            <li><time>May 02, 1980</time><p>Destination</p></li>
-            <li><time>May 02, 1980</time><p>Destination</p></li>
-          </ul>
-        </div>
+        <% if current_user.trips.count > 0 %>
+          <div>
+            <h3>Previous Trips</h3>
+            <ul class="items">
+              <% current_user.trips.each do |trip| %>
+              <li><time><%= trip.start_date %></time><p><%= link_to trip.name.titleize, trip %></p></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
       </section>
     </aside>
     <div class="span9 primary">
@@ -46,12 +46,16 @@
         <a class="carousel-control left" href="#featured-slide" data-slide="prev">&lsaquo;</a>
         <a class="carousel-control right" href="#featured-slide" data-slide="next">&rsaquo;</a>
       </div>
-      <section>
-        <h2>Previous Trip</h2>
-        <p>What you did</p>
-        <p>Where you went</p>
-        <p>Where you stayed</p>
-      </section>
+      <% if current_user.trips.count >0 %>
+        <section>
+          <h2>Previous Trip</h2>
+          <p><%= current_user.last_trip.name %></p>
+          <h3>Where I Went</h3>
+          <% current_user.last_trip.trip_places.each do |place|  %>
+          <p><%= link_to place.place.name.titleize, place.place %></p>
+          <% end %>
+        </section>
+      <% end %>
     </div>
     <!-- END if logged-in -->
   <% else %>
@@ -72,6 +76,7 @@
             <li data-target="#business-slide" data-slide-to="2"></li>
           </ol>
           <div class="carousel-inner">
+            <!-- These are the carousel images -->
             <div class="active item">
               <img src="http://lorempixel.com/600/400/city/" />
               <div class="slide-text">
