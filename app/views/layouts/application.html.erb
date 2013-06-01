@@ -55,12 +55,9 @@
         <% end %>
       </section>
       <section class="span9 nav nav-6">
-        <a href="#">Restaurants</a>
-        <a href="#">Events</a>
-        <a href="#">Nightlife</a>
-        <a href="#">Attractions</a>
-        <a href="#">Activities</a>
-        <a href="#">Shopping</a>
+        <% Category.all.each do |category| %>
+          <%= link_to category.name.titleize, '#' %>
+        <% end %>
       </section>
     </div>
   </header>
