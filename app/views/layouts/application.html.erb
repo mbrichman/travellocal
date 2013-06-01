@@ -5,47 +5,83 @@
   <%= stylesheet_link_tag    "style", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand span2" href="/">Travel Local</a>
-        <div class="nav-collapse">
-
-          <ul class="nav pull-right">
-              <li><%= link_to 'Reviews', reviews_url %></li>
-              <li><%= link_to 'Cities', cities_url %></li>
-              <li><%= link_to 'Places', places_url %></li>
-            <% if signed_in? %>
-              <li><%= link_to 'Users', users_url %></li>
-              <%= form_tag favorites_path,class: 'navbar-search pull-left' , method: 'get' do %>
-                <%= text_field_tag :search, nil, class: "search-query span3", placeholder: 'Search Places' %>
-              <% end %>
-            <li><%= link_to 'Log Out', sessions_destroy_url %></li>
-            <li><%= link_to current_user.name.capitalize, current_user %></li>
-
-            <% else %>
-                <%= form_tag '/search',class: 'navbar-search pull-left' , method: 'get' do %>
-                <%= text_field_tag :search, nil, class: "search-query span3", placeholder: 'Search Places' %>
-                <% end %>
-              <li><%= link_to 'Log In', sessions_new_url %></li>
-              <li><%= link_to 'Sign Up', new_user_url %></li>
-            <% end %>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-  </div>
-
 </head>
 <body>
+  <div id="page">
+  <header id="header">
 
-<%= yield %>
+    <div class="row-fluid">
+      
+      <section class="span3 branding">
+        <h1 class="site-name">Travel Local</h1>
+      </section>
 
+      <section class="span6 social">
+        <div class="social-icons"></div>
+        <div class="social-feeds">
+          <ul class="items">
+            <li class="item">Social feeds</li>
+            <li class="item">Social feeds</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="span3 conntect">
+        <div class="login-form">
+          <input type="text" placeholder="Email Address" />
+          <input type="password" placeholder="Password" />
+          <!-- <input type="submit" value="Login" class="btn" /> -->
+          <a href="/index-loggedin.html" class="btn">Login</a>
+        </div>
+
+        <section class="action">
+          <a href="#" title="Create a Profile">Create a Profile</a>
+        </section>
+      </section>
+    </div>
+
+    <div class="row-fluid">
+      <section class="span3 drop-down">
+        <select>
+          <option value="chicago">Chicago</option>
+          <option value="chicago">Chicago</option>
+          <option value="chicago">Chicago</option>
+          <option value="chicago">Chicago</option>
+          <option value="chicago">Chicago</option>
+        </select>
+      </section>
+      <section class="span9 nav nav-6">
+        <a href="#">Restaurants</a>
+        <a href="#">Events</a>
+        <a href="#">Nightlife</a>
+        <a href="#">Attractions</a>
+        <a href="#">Activities</a>
+        <a href="#">Shopping</a>
+      </section>
+    </div>
+  </header>
+  <div id="main">
+
+  <%= yield %>
+
+  </div>
+    <footer id="footer">
+      <div class="row-fluid">
+        <section class="span6 social-feed">
+          <ul class="items">
+            <li class="item">Twitter Social Feed</li>
+          </ul>
+        </section>
+        <section class="span6 social-feed">
+          <ul class="items">
+            <li class="item">Facebook Live Social Feed</li>
+          </ul>
+        </section>
+      </div>
+      <div class="colophon">
+        <p>&copy; Copyright 2013 Travel Local.</p>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
