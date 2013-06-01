@@ -13,5 +13,7 @@ visitor.png: visitor-68d05adc8510c17f4e79374319b2d2fc.png
 visitor/index.png: visitor-68d05adc8510c17f4e79374319b2d2fc.png
 application.js: application-58eea33950614ebd128b0cd2b5adb4fb.js
 application/index.js: application-58eea33950614ebd128b0cd2b5adb4fb.js
+application.css: application-1b13569e9620782f423d4cd3ce931750.css
+application/index.css: application-1b13569e9620782f423d4cd3ce931750.css
 jquery.min.map: jquery.min-6c267bfd2b3f36e6edccb2e584934c1c.map
 jquery/index.min.map: jquery.min-6c267bfd2b3f36e6edccb2e584934c1c.map
