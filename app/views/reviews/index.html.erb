@@ -18,7 +18,6 @@
     <th>Review text</th>
     <th>Review date</th>
     <th>User</th>
-    <th></th>
   </tr>
 
 <% @reviews.each do |review| %>
@@ -33,7 +32,6 @@
     <td><%= review.review_text %></td>
     <td><%= review.review_date.strftime('%b %e, %y') %></td>
     <td><%= review.user.name.capitalize %></td>
-    <td><%= link_to "Favorite", favorites_path(place_id: review.place.id), method: 'post', class: 'btn' %></td>
   </tr>
 <% end %>
 </table>

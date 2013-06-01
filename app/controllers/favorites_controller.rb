@@ -3,10 +3,10 @@ class FavoritesController < ApplicationController
   # GET /favorites
   # GET /favorites.json
   def index
-    @favorites = Favorite.all
+    @favorites = Favorite.search(params[:search])
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render 'users/show'}
       format.json { render json: @favorites }
     end
   end

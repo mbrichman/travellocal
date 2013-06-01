@@ -13,14 +13,23 @@ class Place < ActiveRecord::Base
     self.address = self.address.downcase
   end
 
-
-
   def self.search(search)
     if search
-      find(:all, :conditions => ['neighborhood LIKE ?', "%#{search}%"])
+      where('neighborhood || name LIKE ?', "%#{search}%")
     else
-      find(:all)
+      self.all
     end
+  end
+
+  def local_fave?
+    count = 0
+    self.reviews.each do |review|
+      if review.user.city == self.city
+        count += 1
+      end
+    end
+    count > ( self.reviews.count - count )
+
   end
 
 end

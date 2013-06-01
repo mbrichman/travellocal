@@ -1,12 +1,18 @@
 <h1>Listing places</h1>
 
+<% if notice %>
+    <div class-'alert-success'><%= notice %></div>
+<% end %>
+
 <table class="table table-hover">
   <tr>
     <th>City</th>
+    <th>Local Fave</th>
     <th>Name</th>
     <th>Address</th>
     <th>Url</th>
     <th>Neighborhood</th>
+    <th></th>
     <th></th>
 
   </tr>
@@ -14,17 +20,23 @@
 <% @places.each do |place| %>
   <tr>
     <td><%= place.city.name %></td>
-    <td><%= link_to fancy_cap(place.name), place %></td>
-    <td><%= place.address %></td>
+    <% if place.local_fave? %>
+    <td><span class="badge badge-success"><i class="icon-heart icon-white"></i></span></td>
+    <% else %>
+    <td></td>
+    <% end %>
+    <td><%= link_to place.name.titleize, place %></td>
+    <td><%= place.address.titleize %></td>
     <td><%= place.url %></td>
-    <td><%= fancy_cap(place.neighborhood) %></td>
+    <td><%= place.neighborhood.titleize %></td>
     <% if signed_in? %>
-    <% if current_user.has_trip_to_city(place.city_id) %>
-        <td><%= link_to 'Add to Trip', add_to_trip_path(place_id: place.id, city_id: place.city_id), method: 'post' %></td>
+    <% if current_user.has_trip_to_city(place.city_id) &&  %>
+        <td><%= link_to 'Add to Trip', add_to_trip_path(place_id: place.id, city_id: place.city_id), method: 'post', class: 'btn btn-small' %></td>
     <% else %>
         <td></td>
     <% end %>
     <% end %>
+    <td><%= link_to "Favorite", favorites_path(place_id: place.id), method: 'post', class: 'btn' %></td>
   </tr>
 <% end %>
 </table>

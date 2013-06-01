@@ -17,7 +17,7 @@
 <ul>
   <% @user.nth_level(2).each do |contact| %>
     <% contact.reviews.each do |review| %>
-      <li><%= link_to contact.name.capitalize, contact %> reviewed <%= link_to review.place.name, review %></li>
+      <li><%= link_to contact.name.try(:capitalize), contact %> reviewed <%= link_to review.place.name, review %></li>
     <% end %>
   <% end %>
 </ul>
@@ -26,7 +26,7 @@
 <ul>
   <% @user.nth_level(3).each do |contact| %>
     <% contact.reviews.each do |review| %>
-      <li><%= link_to contact.name.capitalize, contact %> reviewed <%= link_to review.place.name, review %></li>
+      <li><%= link_to contact.name.try(:capitalize), contact %> reviewed <%= link_to review.place.name, review %></li>
     <% end %>
   <% end %>
 </ul>
@@ -34,10 +34,27 @@
 <h3>Upcoming Trips</h3>
 <ul>
   <% @user.trips.each do |trip| %>
-    <li><%= link_to trip.name.capitalize, trip %> starting on <%= trip.start_date.strftime('%A, %B %e %Y') %></li>
+    <li><%= link_to trip.name.try(:titleize), trip %> starting on <%= trip.start_date.strftime('%A, %B %e %Y') %></li>
   <% end %>
 </ul>
 
+<h3>Friends' Favorites</h3>
+<%= form_tag favorites_path,class: 'navbar-search pull-left' , method: 'get' do %>
+  <%= text_field_tag :search, nil, class: "search-query span3", placeholder: 'Search Favorites' %>
+<% end %>
+<br>
+<br>
+<br>
+<ul>
+  <% @user.friends.each do |friend| %>
+    <% unless friend.favorites.count == 0 %>
+      <li><%= "#{friend.name.capitalize} likes:" %></li>
+      <ul>
+        <% friend.favorites.map {|fave| fave.place }.each do |place| %>
+          <li><%= link_to place.name.titleize, place %> in <%= place.city.name.titleize %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</ul>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

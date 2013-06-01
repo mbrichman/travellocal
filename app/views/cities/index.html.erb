@@ -8,7 +8,7 @@
 
 <% @cities.each do |city| %>
   <tr>
-    <td><%= fancy_cap(city.name) %></td>
+    <td><%= city.name.titleize %></td>
     <% if signed_in?  %>
       <td>
         <%= link_to 'Show', city, class: 'btn btn-success' %> <%= link_to 'Edit', edit_city_path(city), class: 'btn btn-warning' %> <%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>

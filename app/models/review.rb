@@ -4,4 +4,5 @@ class Review < ActiveRecord::Base
   belongs_to :user
 
   validates :user, :review_text, presence: true
+
 end

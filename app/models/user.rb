@@ -14,23 +14,26 @@ class User < ActiveRecord::Base
 
   before_save :downcase_input
 
+  def friends
+    self.connections.map {|friend| friend.user_connection}
+  end
+
+  def friends_favorites
+    @favorites = Array.new
+    self.friends.each do |friend|
+      @favorites[friend.email] = friend.favorites.map { |fave| fave.place }
+    end
+    return @favorites
+
+  end
+
   def has_trip_to_city(city_id)
-    Trip.find_by_user_id(self.id).try(:city_id) == city_id
+    Trip.where(user_id: self.id, city_id: city_id)
   end
 
   def downcase_input
     self.name = self.name.downcase
     self.email = self.email.downcase
-  end
-
-  def second_level
-    second_level = Array.new
-    self.connections.each do |c|
-      c.user_connection.connections.each do |second|
-        second_level << second.user_connection
-      end
-    end
-    return second_level
   end
 
   def nth_level(level, array = Array.new, connections=self.connections)

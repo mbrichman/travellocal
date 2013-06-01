@@ -20,7 +20,7 @@
 <h3>Places</h3>
 <ul>
 <% @trip.trip_places.each do |place| %>
-  <li><%= fancy_cap(place.place.name) %></li>
+  <li><%= place.place.name.titleize %></li>
 <% end %>
 </ul>
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
