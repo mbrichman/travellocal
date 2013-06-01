@@ -54,7 +54,7 @@
           <%= select_tag :id, options_from_collection_for_select(City.all, :id, :name) %>
         <% end %>
       </section>
-      <section class="span9 nav nav-6">
+      <section class="span9 nav nav-8">
         <% Category.all.each do |category| %>
           <%= link_to category.name.titleize, '#' %>
         <% end %>
