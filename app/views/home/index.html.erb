@@ -52,7 +52,7 @@
           <p><%= current_user.last_trip.name %></p>
           <h3>Where I Went</h3>
           <% current_user.last_trip.trip_places.each do |place|  %>
-          <p><%= link_to place.place.name.titleize, place.place %></p>
+          <p><%= link_to place.place.name.titleize %></p>
           <% end %>
         </section>
       <% end %>
@@ -63,9 +63,6 @@
       <aside class="span3">
         <section>
           <h3>Hotel/Lodging</h3>
-        </section>
-        <section>
-          <h3>Transportation</h3>
         </section>
       </aside>
       <div class="span6 primary">
@@ -167,6 +164,10 @@
       </div>
       <aside class="span3">
         <section>
+          <h3>Transportation</h3>
+        </section>
+      <!--
+        <section>
           <%= form_tag places_path,class: 'navbar-search' , method: 'get' do %>
             <%= text_field_tag :search, nil, class: "search-query", placeholder: 'Search Places' %>
           <% end %>
@@ -174,7 +175,7 @@
         <section>
           <h3>Quick Results</h3>
         </section>
-      </aside>
+      </aside> -->
       <!-- END if not logged-in -->
   <% end %>
 

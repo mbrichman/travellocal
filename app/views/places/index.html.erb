@@ -44,7 +44,7 @@
           <img src="http://lorempixel.com/200/150/business/" />
           <div class="item-text">
             <h5><%= link_to place.name.titleize, place %></h5>
-            <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' %></p>
+            <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' if place.description %></p>
           </div>
         </li>
         <% end %>

@@ -11,7 +11,12 @@ end
   # GET /places
   # GET /places.json
   def index
-    @places = Place.search(params[:search])
+    if params[:category]
+      category = Category.find_by_name(params[:category])
+      @places = Place.where(category_id: category)
+    else
+      @places = Place.search(params[:search])
+    end
 
     respond_to do |format|
       format.html # index.html.erb
