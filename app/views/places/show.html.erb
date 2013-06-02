@@ -21,22 +21,20 @@
         <%= link_to 'Edit', edit_place_path(@place), class: 'btn' %>
       <% end %>
     </h3>
-    <div class="row-flud">
+    <div class="row-fluid">
       <div class="span6">
         <div>
           <%= image_tag @place.photo.url(:medium) %>
         </div>
+        <div class="actions-btns">
+            <%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
+            <%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn btn-primary' %>
+          </div>
         <div>
-          <h4>
-            Reviews
-            <%= link_to 'Add a Review', new_review_path, class: 'btn btn-primary' %>
-          </h4>
-          <ul>
-            <% @place.reviews.each do |review| %>
-            <li><%= review.user.name.titleize %> said:<br> <%= review.review_text %></li>
-            <% end %>
-          </ul>
-        </div>       
+        <h4>Description:</h4>
+        <%= @place.try(:description) %>
+
+        </div>
 
       </div>
       <div class="span6">
@@ -46,17 +44,21 @@
           <p><strong>Address: </strong><%= @place.address.titleize %></p>
           <p><strong>Url: </strong><%= @place.url %></p>
           <p><strong>Neighborhood: </strong><%= @place.neighborhood.titleize %></p>
-          <div class="actions-btns">
-            <%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
-            <%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn btn-primary' %>
-          </div>
+
         </div>
-        <h4>Description:</h4>
-        <%= @place.try(:description) %>
+       <h4>
+            Reviews
+            <%= link_to 'Add a Review', new_review_path, class: 'btn btn-primary' %>
+          </h4>
+          <ul>
+            <% @place.reviews.each do |review| %>
+            <li><%= review.user.name.titleize %> said:<br> <%= review.review_text %></li>
+            <% end %>
+          </ul>
       </div>
     </div>
   </div>
-  <aside class="span3 seconday">
+  <aside class="span3 secondary">
     <div class="listings">
       <h5>Featured Business</h5>
       <ul class="items">
