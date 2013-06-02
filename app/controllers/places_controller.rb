@@ -11,12 +11,13 @@ end
   # GET /places
   # GET /places.json
   def index
-    if params[:category]
-      category = Category.find_by_name(params[:category])
-      @places = Place.where(category_id: category)
-    else
-      @places = Place.search(params[:search])
-    end
+    # if params[:category]
+    #   category = Category.find_by_name(params[:category])
+    #   @places = Place.where(category_id: category)
+    # else
+    #   @places = Place.search(params[:search])
+    # end
+      @places = Place.where('neighborhood || name LIKE ?', "%#{params[:search]}%")
 
     respond_to do |format|
       format.html # index.html.erb
