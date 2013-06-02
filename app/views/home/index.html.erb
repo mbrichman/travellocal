@@ -4,8 +4,6 @@
     <!-- if logged-in -->
       <aside class="span3">
         <section>
-          <input type="text" placeholder="search..." />
-          <input type="submit" value="Search" class="btn btn-primary" />
           <% if current_user.trips.count > 0 %>
             <div>
               <h3>Previous Trips</h3>

@@ -17,12 +17,20 @@
       </section>
 
       <section class="span6 social">
-        <div class="social-icons"></div>
+        <div class="form-group">
+          <form class="form-search search">
+            <div class="input-append">
+              <%= form_tag places_path,class: 'navbar-search' , method: 'get' do %>
+                <%= text_field_tag :search, nil, class: "search-query", placeholder: 'Search Places' %>
+              <% end %>
+              <button type="submit" class="btn">Search</button>
+            </div>
+          </form>
+        </div>
         <div class="social-feeds">
           <ul class="items">
-          <%= form_tag places_path,class: 'navbar-search' , method: 'get' do %>
-            <li id='search' class="item"><%= text_field_tag :search, nil, class: "search-query", placeholder: 'Search Places' %></li>
-          <% end %>
+          
+            <li class="item">Social Feed</li>
           </ul>
         </div>
       </section>
