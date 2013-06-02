@@ -75,7 +75,7 @@
           <div class="carousel-inner">
             <!-- These are the carousel images -->
             <div class="active item">
-              <% @the_place = Place.first %>
+              <% @the_place = Place.find(3) %>
               <%= image_tag @the_place.photo %>
               <!-- <img src="http://lorempixel.com/600/400/city/" /> -->
               <div class="slide-text">
