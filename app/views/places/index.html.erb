@@ -41,7 +41,11 @@
       <ul class="items cols-1-3">
         <% @places.each do |place| %>
         <li>
-          <img src="http://lorempixel.com/200/150/business/" />
+          <% if place.photo.present? %>
+            <%= image_tag place.photo.url(:medium) %>
+          <% else %>
+            <img src="http://lorempixel.com/200/150/business/" />
+          <% end %>
           <div class="item-text">
             <h5><%= link_to place.name.titleize, place %></h5>
             <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' if place.description %></p>

@@ -1,5 +1,8 @@
 Travellocal::Application.routes.draw do
 
+  resources :search_suggestions
+
+
   post 'trip_places/create', as: 'add_to_trip'
   delete 'trip_places/destroy', as: 'remove_from_trip'
 

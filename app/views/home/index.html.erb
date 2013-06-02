@@ -2,61 +2,61 @@
 <div class="row-fluid">
   <% if signed_in? %>
     <!-- if logged-in -->
-    <aside class="span3">
-      <section>
-        <input type="text" placeholder="search..." />
-        <input type="submit" value="Search" class="btn btn-primary" />
-        <% if current_user.trips.count > 0 %>
-          <div>
-            <h3>Previous Trips</h3>
-            <ul class="items">
-              <% current_user.trips.each do |trip| %>
-              <li><time><%= trip.start_date %></time><p><%= link_to trip.name.titleize, trip %></p></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-      </section>
-    </aside>
-    <div class="span9 primary">
-      <div id="featured-slide" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="active item">
-            <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
-          </div>
-          <div class="item">
-            <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/nature/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/nature/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
-          </div>
-          <div class="item">
-            <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
-            <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
-          </div>
-        </div>
-        <a class="carousel-control left" href="#featured-slide" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#featured-slide" data-slide="next">&rsaquo;</a>
-      </div>
-      <% if current_user.trips.count >0 %>
+      <aside class="span3">
         <section>
-          <h2>Previous Trip</h2>
-          <p><%= current_user.last_trip.name %></p>
-          <h3>Where I Went</h3>
-          <% current_user.last_trip.trip_places.each do |place|  %>
-          <p><%= link_to place.place.name.titleize %></p>
+          <input type="text" placeholder="search..." />
+          <input type="submit" value="Search" class="btn btn-primary" />
+          <% if current_user.trips.count > 0 %>
+            <div>
+              <h3>Previous Trips</h3>
+              <ul class="items">
+                <% current_user.trips.each do |trip| %>
+                <li><time><%= trip.start_date %></time><p><%= link_to trip.name.titleize, trip %></p></li>
+                <% end %>
+              </ul>
+            </div>
           <% end %>
         </section>
-      <% end %>
-    </div>
+      </aside>
+      <div class="span9 primary">
+        <div id="featured-slide" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="active item">
+              <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+            </div>
+            <div class="item">
+              <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/nature/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/nature/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+            </div>
+            <div class="item">
+              <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+              <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+            </div>
+          </div>
+          <a class="carousel-control left" href="#featured-slide" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#featured-slide" data-slide="next">&rsaquo;</a>
+        </div>
+        <% if current_user.trips.count >0 %>
+          <section>
+            <h2>Previous Trip</h2>
+            <p><%= current_user.last_trip.name %></p>
+            <h3>Where I Went</h3>
+            <% current_user.last_trip.trip_places.each do |place|  %>
+            <p><%= link_to place.place.name.titleize %></p>
+            <% end %>
+          </section>
+        <% end %>
+      </div>
     <!-- END if logged-in -->
   <% else %>
     <!-- if not logged-in -->
@@ -75,23 +75,25 @@
           <div class="carousel-inner">
             <!-- These are the carousel images -->
             <div class="active item">
-              <img src="http://lorempixel.com/600/400/city/" />
+              <%= image_tag Place.first.photo %>
+              <!-- <img src="http://lorempixel.com/600/400/city/" /> -->
               <div class="slide-text">
-                <p>Some text for this slide 1.</p>
+                <p><%= Place.first.description.split(/\s/)[0..15].join(' ')+'...' %></p>
               </div>
             </div>
-            <div class="item">
-              <img src="http://lorempixel.com/600/400/sports/" />
-              <div class="slide-text">
-                <p>Some text for this slide 2.</p>
+            <% @places.each do |place| %>
+              <div class="item">
+                <%= image_tag place.photo %>
+                <!-- <img src="http://lorempixel.com/600/400/city/" /> -->
+                <div class="slide-text">
+                  <% if place.description %>
+                    <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' %></p>
+                    <% else %>
+                    <p><%= place.name %></p>
+                    <% end %>
+                </div>
               </div>
-            </div>
-            <div class="item">
-              <img src="http://lorempixel.com/600/400/nightlife/" />
-              <div class="slide-text">
-                <p>Some text for this slide 3.</p>
-              </div>
-            </div>
+            <% end %>
           </div>
         </div>
         <h1>Heading 1</h1>

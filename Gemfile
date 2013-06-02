@@ -17,7 +17,7 @@ gem 'seed_dump'
 
 gem 'omniauth-facebook'
 
-
+gem 'paperclip'
 
 # Gems used only for assets and not required
 # in production environments by default.

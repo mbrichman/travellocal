@@ -1,8 +1,9 @@
 class Place < ActiveRecord::Base
-  attr_accessible :address, :city_id, :name, :neighborhood, :url, :category_id, :description
+  attr_accessible :address, :city_id, :name, :neighborhood, :url, :category_id, :description, :photo
   belongs_to :city
   has_many :reviews
   belongs_to :category
+  has_attached_file :photo, :styles => { :medium => "250x250>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
   validates :address, :city_id, :name, :neighborhood, presence: true
 
