@@ -12,9 +12,8 @@
   <header id="header">
 
     <div class="row-fluid">
-
       <section class="span3 branding">
-        <h1 class="site-name"><%= image_tag 'logo-01.png', size: '200x200' %></h1>
+        <%= image_tag 'logo-01.png', size: '200x200' %>
       </section>
 
       <section class="span6 social">
@@ -36,7 +35,7 @@
           </ul>
         </div> -->
       </section>
-      <section class="span3 conntect">
+      <section class="span3 connect">
         <% if signed_in?  %>
           <div>
             <%= render 'cities_dropdown' %>
@@ -44,16 +43,13 @@
             <%= link_to 'Log Out', sessions_destroy_path, class: 'btn' %>
           </div>
         <% else %>
+          <%= render 'cities_dropdown' %>
           <%= link_to 'Log In', sessions_new_path, class: 'btn' %>
           <div class="login-form">
           </div>
         <% end %>
-        <section class="action">
-        </section>
-      </section>
-    </div>
-    <div class="row-fluid">
-      <section class="span3 drop-down">
+        <section>
+        </section class="span3">
       </section>
       <section class="span9 nav nav-8">
         <% Category.all.each do |category| %>
@@ -61,6 +57,7 @@
         <% end %>
       </section>
     </div>
+
   </header>
   <div id="main">
 
