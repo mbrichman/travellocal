@@ -1,6 +1,6 @@
 Travellocal::Application.routes.draw do
 
-  resources :search_suggestions
+  resources :suggestions
 
 
   post 'trip_places/create', as: 'add_to_trip'

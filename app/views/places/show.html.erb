@@ -1,17 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+<h3>  <%= @place.name.titleize %></h3>
+</p>
+
+<p>
   <b>City:</b>
   <%= @place.city.name %>
 </p>
 <p>
   <b>Category:</b>
   <%= @place.category.try(:name) %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @place.name.titleize %>
 </p>
 
 <p>
@@ -33,7 +32,7 @@
   <%= @place.try(:description) %>
 </p>
 
-<h2>Reviews</h2>
+<h4>Reviews</h4>
 <div>
   <ul>
     <% @place.reviews.each do |review| %>
@@ -42,6 +41,5 @@
   </ul>
 </div>
 
-
-<%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>
+<%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
+<%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn btn-small' %>
