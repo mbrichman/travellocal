@@ -1,42 +1,39 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
+</p>
+<div class= 'span3 pull-left'>
 <h3>  <%= @place.name.titleize %></h3>
-</p>
+  <%= image_tag @place.photo.url(:medium) %>
+</div>
 
-<p>
+<div class= 'place-details'>
+  <p>
   <b>City:</b>
-  <%= @place.city.name %>
-</p>
-<p>
+  <%= @place.city.name %><br>
   <b>Category:</b>
-  <%= @place.category.try(:name) %>
-</p>
-
-<p>
+  <%= @place.category.try(:name).titleize %><br>
   <b>Address:</b>
-  <%= @place.address.titleize %>
-</p>
-
-<p>
+  <%= @place.address.titleize %><br>
   <b>Url:</b>
-  <%= @place.url %>
-</p>
+  <%= @place.url %><br>
 
-<p>
   <b>Neighborhood:</b>
   <%= @place.neighborhood.titleize %>
 </p>
+</div>
 <p>
   <b>Description:</b>
   <%= @place.try(:description) %>
 </p>
 
+
 <h4>Reviews</h4>
 <div>
   <ul>
     <% @place.reviews.each do |review| %>
-    <li><%= review.review_text %></li>
+    <li><%= review.user.name.titleize %> said:<br> <%= review.review_text %></li>
     <% end %>
   </ul>
 </div>
