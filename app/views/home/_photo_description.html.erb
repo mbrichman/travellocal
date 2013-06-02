@@ -1,0 +1,5 @@
+    <% if @the_place.description %>
+      <p><%= @the_place.description.split(/\s/)[0..15].join(' ')+'...' %></p>
+    <% else %>
+      <p><%= @the_place.name %></p>
+    <% end %>
