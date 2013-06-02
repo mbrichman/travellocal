@@ -1,52 +1,103 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <aside class="span3">
+    <section>
+      <% if signed_in? %>
+        <div>
+          <h3>Previous Trips</h3>
+          <ul class="items">
+            <% current_user.trips.each do |trip| %>
+              <li><time><%= trip.start_date %></time><p><%= link_to trip.name, trip %></p></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </section>
+  </aside>
+  <div class="span6 primary">
 
+    <h3>
+      <%= @place.name.titleize %>
+      <% if signed_in? %>
+        <%= link_to 'Edit', edit_place_path(@place), class: 'btn' %>
+      <% end %>
+    </h3>
+    <div class="row-flud">
+      <div class="span6">
+        <div>
+          <%= image_tag @place.photo.url(:medium) %>
+        </div>
+        <div>
+          <h4>
+            Reviews
+            <%= link_to 'Add a Review', new_review_path, class: 'btn btn-primary' %>
+          </h4>
+          <ul>
+            <% @place.reviews.each do |review| %>
+            <li><%= review.user.name.titleize %> said:<br> <%= review.review_text %></li>
+            <% end %>
+          </ul>
+        </div>       
 
-<p>
-</p>
-<div>
-  <h3>  <%= @place.name.titleize %>
-<% if signed_in? %>
-  <%= link_to 'Edit', edit_place_path(@place), class: 'btn' %>
-<% end %>
-  </h3>
-</div>
-<div class= 'span3 pull-left'>
-  <%= image_tag @place.photo.url(:medium) %>
-</div>
-
-<div class= 'place-details span9'>
-  <p>
-  <b>City:</b>
-  <%= @place.city.name %><br>
-  <b>Category:</b>
-  <%= @place.category.try(:name).titleize %><br>
-  <b>Address:</b>
-  <%= @place.address.titleize %><br>
-  <b>Url:</b>
-  <%= @place.url %><br>
-
-  <b>Neighborhood:</b>
-  <%= @place.neighborhood.titleize %>
-</p>
-  <%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
-  <%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn' %>
-</div>
-
-<div >
-</div>
-<div class='clearfix:after'><p>
-  <b>Description:</b>
-  <%= @place.try(:description) %>
-</p>
-</div>
-
-<h4>Reviews  <%= link_to 'Add a Review', new_review_path, class: 'btn' %></h4>
-<div>
-  <ul>
-    <% @place.reviews.each do |review| %>
-    <li><%= review.user.name.titleize %> said:<br> <%= review.review_text %></li>
-    <% end %>
-  </ul>
+      </div>
+      <div class="span6">
+        <div>
+          <p><strong>City: </strong><%= @place.city.name %></p>
+          <p><strong>Category: </strong><%= @place.category.try(:name).titleize %></p>
+          <p><strong>Address: </strong><%= @place.address.titleize %></p>
+          <p><strong>Url: </strong><%= @place.url %></p>
+          <p><strong>Neighborhood: </strong><%= @place.neighborhood.titleize %></p>
+          <div class="actions-btns">
+            <%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
+            <%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn btn-primary' %>
+          </div>
+        </div>
+        <h4>Description:</h4>
+        <%= @place.try(:description) %>
+      </div>
+    </div>
+  </div>
+  <aside class="span3 seconday">
+    <div class="listings">
+      <h5>Featured Business</h5>
+      <ul class="items">
+        <li>
+          <img src="http://lorempixel.com/125/80/business/" class="span4" />
+          <div class="span8 item-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </li>
+        <li>
+          <img src="http://lorempixel.com/125/80/business/" class="span4" />
+          <div class="span8 item-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </li>
+        <li>
+          <img src="http://lorempixel.com/125/80/business/" class="span4" />
+          <div class="span8 item-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </li>
+        <li>
+          <img src="http://lorempixel.com/125/80/business/" class="span4" />
+          <div class="span8 item-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </li>
+        <li>
+          <img src="http://lorempixel.com/125/80/business/" class="span4" />
+          <div class="span8 item-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </aside>
 </div>
 
 
