@@ -4,7 +4,11 @@
 <p>
 </p>
 <div>
-  <h3>  <%= @place.name.titleize %></h3>
+  <h3>  <%= @place.name.titleize %>
+<% if signed_in? %>
+  <%= link_to 'Edit', edit_place_path(@place), class: 'btn' %>
+<% end %>
+  </h3>
 </div>
 <div class= 'span3 pull-left'>
   <%= image_tag @place.photo.url(:medium) %>
@@ -36,7 +40,7 @@
 </p>
 </div>
 
-<h4>Reviews</h4>
+<h4>Reviews  <%= link_to 'Add a Review', new_review_path, class: 'btn' %></h4>
 <div>
   <ul>
     <% @place.reviews.each do |review| %>
