@@ -9,7 +9,7 @@
 <h3>My Reviews</h3>
 <ul>
   <% @user.reviews.each do |review| %>
-  <li><%= link_to review.place.name, review %></li>
+  <li><%= link_to review.place.name.titleize, review %></li>
   <% end %>
 </ul>
 
@@ -17,7 +17,7 @@
 <ul>
   <% @user.nth_level(2).each do |contact| %>
     <% contact.reviews.each do |review| %>
-      <li><%= link_to contact.name.try(:capitalize), contact %> reviewed <%= link_to review.place.name, review %></li>
+      <li><%= link_to contact.name.try(:capitalize), contact %> reviewed <%= link_to review.place.name.titleize, review %></li>
     <% end %>
   <% end %>
 </ul>
@@ -26,7 +26,7 @@
 <ul>
   <% @user.nth_level(3).each do |contact| %>
     <% contact.reviews.each do |review| %>
-      <li><%= link_to contact.name.try(:capitalize), contact %> reviewed <%= link_to review.place.name, review %></li>
+      <li><%= link_to contact.name.try(:capitalize), contact %> reviewed <%= link_to review.place.name.titleize, review %></li>
     <% end %>
   <% end %>
 </ul>
