@@ -23,6 +23,10 @@ class Place < ActiveRecord::Base
     end
   end
 
+  def is_favorite?
+    Favorite.find_by_place_id_and_user_id(place_id: self.id, user_id: User.first.id)
+  end
+
   def local_fave?
     count = 0
     self.reviews.each do |review|

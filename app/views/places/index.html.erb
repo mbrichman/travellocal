@@ -1,4 +1,5 @@
 <div class="row-fluid">
+
   <aside class="span3">
     <section>
       <% if signed_in? %>
@@ -13,8 +14,21 @@
       <% end %>
     </section>
   </aside>
-  <div class="span6 primary row-fluid">
-    <div class="span3">
+  <div class="span9 primary row-fluid">
+      <% if notice %>
+        <div><%= notice %></div>
+      <% end %>
+      <% if @favorite %>
+        <% @favorite.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+      <% end %>
+      <% if @wishlist %>
+        <% @wishlist.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+      <% end %>
+<!--     <div class="span3">
       <div class="filters">
         <h5>Filter</h5>
         <div class="form-group">
@@ -34,9 +48,11 @@
         </div>
         <%= link_to 'Add Place', new_place_path, class: 'btn' %>
       </div>
-    </div>
-    <div class="span9 listings">
-      <h3>Chicago Businesses</h3>
+    </div> -->
+    <div class="listings">
+      <h3>Travel Local<%= " #{params[:category].titleize}" if params[:category] %> in Chicago
+    <%= link_to 'Add Place', new_place_path, class: 'btn' %>
+    </h3>
       <ul class="items cols-1-3">
         <% @places.each do |place| %>
         <li>
@@ -46,7 +62,14 @@
             <img src="http://lorempixel.com/200/150/business/" />
           <% end %>
           <div class="item-text">
-            <h5><%= link_to place.name.titleize, place %></h5>
+            <h5><%= link_to place.name.titleize, place %><br>
+              <%= link_to raw("<i class=\"icon-thumbs-up\"></i>"), favorites_path(place_id: place.id), method: 'post' %>
+              <%= link_to raw("<i class=\"icon-briefcase\"></i>"), wishlists_path(place_id: place.id), method: 'post' %>
+              <!-- raw html tooltips
+                <a href="#" class="add-favorite" title="Add Favorite" data-trigger="hover"><i class="icon-thumbs-up"></i></a>
+                <a href="#" class="add-wishlist" title="Add to Wishlist" data-trigger="hover"><i class="icon-briefcase"></i></a>
+               -->
+            </h5>
             <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' if place.description %></p>
           </div>
         </li>
@@ -54,93 +77,9 @@
       </ul>
     </div>
   </div>
-  <aside class="span3 seconday">
-    <div class="listings">
-      <h5>Featured Business</h5>
-      <ul class="items">
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </aside>
+
 </div>
-
-<!-- <h1>Listing places</h1>
-
-<% if notice %>
-    <div class-'alert-success'><%= notice %></div>
-<% end %>
-
-<table class="table table-hover">
-  <tr>
-    <th>City</th>
-    <th>Local Fave</th>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Url</th>
-    <th>Neighborhood</th>
-    <th></th>
-    <th></th>
-
-  </tr>
-
-<% @places.each do |place| %>
-  <tr>
-    <td><%= place.city.name %></td>
-    <% if place.local_fave? %>
-    <td><span class="badge badge-success"><i class="icon-heart icon-white"></i></span></td>
-    <% else %>
-    <td></td>
-    <% end %>
-    <td><%= link_to place.name.titleize, place %></td>
-    <td><%= place.address.titleize %></td>
-    <td><%= place.url %></td>
-    <td><%= place.neighborhood.titleize %></td>
-    <% if signed_in? %>
-    <% if current_user.has_trip_to_city(place.city_id) &&  %>
-        <td><%= link_to 'Add to Trip', add_to_trip_path(place_id: place.id, city_id: place.city_id), method: 'post', class: 'btn btn-small' %></td>
-    <% else %>
-        <td></td>
-    <% end %>
-    <% end %>
-    <td><%= link_to "Favorite", favorites_path(place_id: place.id), method: 'post', class: 'btn' %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-    <%= link_to 'New Place', new_place_path, class: 'btn' %>
- -->
+<script>
+$('.add-favorite').tooltip({trigger: 'hover'});
+$('.add-wishlist').tooltip({trigger: 'hover'});
+</script>

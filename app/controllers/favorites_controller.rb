@@ -45,11 +45,12 @@ class FavoritesController < ApplicationController
 
     respond_to do |format|
       if @favorite.save
-        format.html { redirect_to reviews_path, notice: 'Favorite was successfully added.' }
+        format.js
+        format.html { redirect_to places_path, notice: 'Favorite was successfully added.' }
         format.json { render json: @favorite, status: :created, location: @favorite }
       else
-        @reviews = Review.all
-        format.html { render 'reviews/index' }
+        @places = Place.all
+        format.html { render 'places/index' }
         format.json { render json: @favorite.errors, status: :unprocessable_entity }
       end
     end

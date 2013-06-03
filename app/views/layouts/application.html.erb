@@ -12,8 +12,8 @@
   <header id="header">
 
     <div class="row-fluid">
-      <section class="span3 branding">
-        <%= image_tag 'logo-01.png', size: '200x200' %>
+      <section class="span2 branding">
+        <%= link_to (image_tag 'logo-01.png', size: '150x150'), root_path %>
       </section>
 
       <section class="span6 social">
@@ -49,9 +49,9 @@
           </div>
         <% end %>
         <section>
-        </section class="span3">
+        </section class="span2">
       </section>
-      <section class="span9 nav nav-8">
+      <section class="span10 nav nav-8">
         <% Category.all.each do |category| %>
           <%= link_to category.name.titleize, places_path(category: category.name) %>
         <% end %>
