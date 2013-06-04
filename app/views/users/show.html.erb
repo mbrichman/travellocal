@@ -8,12 +8,23 @@
 <div class="row-fluid">
   <div class="span4 primary row-fluid">
     <h3>My Wishlist</h3>
+    <ul>
+      <% current_user.wishlists.each do |wish| %>
+          <li><%= wish.place.name.titleize %> <%= link_to raw("<i class=\"icon-remove\"></i>"), wishlist_path(wish), method: 'delete' %></li>
+        <% end %>
+    </ul>
+    <h3>My Favorites</h3>
+    <ul>
+      <% current_user.favorites.each do |favorite| %>
+          <li><%= favorite.place.name.titleize %> <%= link_to raw("<i class=\"icon-remove\"></i>"), favorite_path(favorite), method: 'delete' %></li>
+        <% end %>
+    </ul>
   </div>
   <div class="span4 primary row-fluid">
         <h3>My Reviews</h3>
     <ul>
       <% @user.reviews.each do |review| %>
-      <li><%= link_to review.place.name.titleize, review %></li>
+      <li><%= link_to review.place.name.titleize, review %></i></li>
       <% end %>
     </ul>
 

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
   has_many :authentications
   belongs_to  :city
+  has_many :wishlists, :dependent => :destroy
 
   before_save :downcase_input
 

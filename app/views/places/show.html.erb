@@ -19,6 +19,7 @@
       <%= @place.name.titleize %>
       <% if signed_in? %>
         <%= link_to 'Edit', edit_place_path(@place), class: 'btn' %>
+        <%= link_to 'Delete', place_path(@place), class: 'btn btn-danger', method: 'delete', confirm: 'Are you sure?' %>
       <% end %>
     </h3>
     <div class="row-fluid">
@@ -26,10 +27,12 @@
         <div>
           <%= image_tag @place.photo.url(:medium) %>
         </div>
+        <% if signed_in? %>
         <div class="actions-btns">
             <%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
             <%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn btn-primary' %>
           </div>
+          <% end %>
         <div>
         <h4>Description:</h4>
         <%= @place.try(:description) %>
@@ -41,14 +44,16 @@
         <div>
           <p><strong>City: </strong><%= @place.city.name %></p>
           <p><strong>Category: </strong><%= @place.category.try(:name).titleize %></p>
-          <p><strong>Address: </strong><%= @place.address.titleize %></p>
+          <p><strong>Address: </strong><%= @place.address.try(:titleize) %></p>
           <p><strong>Url: </strong><%= @place.url %></p>
-          <p><strong>Neighborhood: </strong><%= @place.neighborhood.titleize %></p>
+          <p><strong>Neighborhood: </strong><%= @place.neighborhood.try(:titleize) %></p>
 
         </div>
        <h4>
             Reviews
+            <% if signed_in? %>
             <%= link_to 'Add a Review', new_review_path, class: 'btn btn-primary' %>
+            <% end %>
           </h4>
           <ul>
             <% @place.reviews.each do |review| %>

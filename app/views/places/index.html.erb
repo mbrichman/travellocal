@@ -62,13 +62,17 @@
             <img src="http://lorempixel.com/200/150/business/" />
           <% end %>
           <div class="item-text">
-            <h5><%= link_to place.name.titleize, place %><br>
-              <%= link_to raw("<i class=\"icon-thumbs-up\"></i>"), favorites_path(place_id: place.id), method: 'post' %>
-              <%= link_to raw("<i class=\"icon-briefcase\"></i>"), wishlists_path(place_id: place.id), method: 'post' %>
-              <!-- raw html tooltips
-                <a href="#" class="add-favorite" title="Add Favorite" data-trigger="hover"><i class="icon-thumbs-up"></i></a>
-                <a href="#" class="add-wishlist" title="Add to Wishlist" data-trigger="hover"><i class="icon-briefcase"></i></a>
-               -->
+            <h5><%= link_to place.name.titleize, place %>
+              <% if signed_in? %>
+                <br>
+                <%= link_to raw("<i class=\"icon-thumbs-up\"></i>"), favorites_path(place_id: place.id), method: 'post', class: 'add-favorite' %>
+                <%= link_to raw("<i class=\"icon-briefcase\"></i>"), wishlists_path(place_id: place.id), method: 'post', class: 'add-wishlist' %>
+                <%= link_to raw("<i class=\"icon-plane\"></i>"), wishlists_path(place_id: place.id), method: 'post', class: 'add-wishlist' %>
+                <% end %>
+              <!--  raw html tooltips -->
+                <!-- <a href="#" class="add-favorite" title="Add Favorite" data-trigger="hover"><i class="icon-thumbs-up"></i></a>
+                <a href="#" class="add-wishlist" title="Add to Wishlist" data-trigger="hover"><i class="icon-briefcase"></i></a> -->
+
             </h5>
             <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' if place.description %></p>
           </div>
