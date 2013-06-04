@@ -20,7 +20,7 @@
 <h3>Places</h3>
 <ul>
 <% @trip.trip_places.each do |place| %>
-  <li><%= place.place.name.titleize %></li>
+  <li><%= place.place.name.titleize %> <%= link_to raw("<i class=\"icon-remove\"></i>"), remove_from_trip_path(place), method: 'delete' %></li>
 <% end %>
 </ul>
 <%= link_to 'Edit', edit_trip_path(@trip) %> |

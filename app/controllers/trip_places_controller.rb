@@ -26,7 +26,7 @@ class TripPlacesController < ApplicationController
     respond_to do |format|
       if @trip_place.save
         @places = Place.all
-        format.html { render 'places/index', notice: 'The place has been added to your trip' }
+        format.html { redirect_to trip_path(@trip_place.trip_id), notice: 'The place has been added to your trip' }
         format.json { render json: @trip_place, status: :created, location: @trip_place }
       else
         format.html { render action: "new" }
@@ -36,11 +36,12 @@ class TripPlacesController < ApplicationController
   end
 
   def destroy
-    @trip_place = Trip.find(params[:id])
+    @trip_place = TripPlace.find(params[:id])
+    trip_id = TripPlace.find(params[:id]).trip_id
     @trip_place.destroy
 
     respond_to do |format|
-      format.html { redirect_to trips_url }
+      format.html { redirect_to trip_path(trip_id) }
       format.json { head :no_content }
     end
 

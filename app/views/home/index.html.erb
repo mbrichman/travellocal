@@ -48,7 +48,7 @@
       -->
       <% if current_user.trips.count >0 %>
         <section>
-          <h2>Recently Activity</h2>
+          <h2>Recent Activity</h2>
           <p><%= current_user.last_trip.name %></p>
           <h3>Where I Went</h3>
           <% current_user.last_trip.trip_places.each do |place|  %>

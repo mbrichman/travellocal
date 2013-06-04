@@ -67,14 +67,15 @@
                 <br>
                 <%= link_to raw("<i class=\"icon-thumbs-up\"></i>"), favorites_path(place_id: place.id), method: 'post', class: 'add-favorite' %>
                 <%= link_to raw("<i class=\"icon-briefcase\"></i>"), wishlists_path(place_id: place.id), method: 'post', class: 'add-wishlist' %>
-                <%= link_to raw("<i class=\"icon-plane\"></i>"), wishlists_path(place_id: place.id), method: 'post', class: 'add-wishlist' %>
+                <%= link_to raw("<i class=\"icon-plane\"></i>"), add_to_trip_path(place_id: place.id, city_id: place.city_id), method: 'post', class: 'add-wishlist' %>
                 <% end %>
               <!--  raw html tooltips -->
                 <!-- <a href="#" class="add-favorite" title="Add Favorite" data-trigger="hover"><i class="icon-thumbs-up"></i></a>
                 <a href="#" class="add-wishlist" title="Add to Wishlist" data-trigger="hover"><i class="icon-briefcase"></i></a> -->
 
             </h5>
-            <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' if place.description %></p>
+            <p><%= smart_truncate(place.description, 75) if place.description %></p>
+            <!-- <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' if place.description %></p> -->
           </div>
         </li>
         <% end %>

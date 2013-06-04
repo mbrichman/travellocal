@@ -57,7 +57,7 @@
           </h4>
           <ul>
             <% @place.reviews.each do |review| %>
-            <li><%= review.user.name.try(:titleize) %> said:<br> <%= review.review_text %></li>
+            <li><%= link_to review.user.name.try(:titleize), user_path(review.user) %> said:<br> <%= review.review_text %></li>
             <% end %>
           </ul>
       </div>
