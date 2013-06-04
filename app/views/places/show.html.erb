@@ -43,7 +43,7 @@
       <div class="span6">
         <div>
           <p><strong>City: </strong><%= @place.city.name %></p>
-          <p><strong>Category: </strong><%= @place.category.try(:name).titleize %></p>
+          <p><strong>Category: </strong><%= @place.category.try(:name).try(:titleize) %></p>
           <p><strong>Address: </strong><%= @place.address.try(:titleize) %></p>
           <p><strong>Url: </strong><%= @place.url %></p>
           <p><strong>Neighborhood: </strong><%= @place.neighborhood.try(:titleize) %></p>
@@ -57,7 +57,7 @@
           </h4>
           <ul>
             <% @place.reviews.each do |review| %>
-            <li><%= review.user.name.titleize %> said:<br> <%= review.review_text %></li>
+            <li><%= review.user.name.try(:titleize) %> said:<br> <%= review.review_text %></li>
             <% end %>
           </ul>
       </div>
