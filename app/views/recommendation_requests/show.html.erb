@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @recommendation_request.user.name.capitalize %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @recommendation_request.city.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @recommendation_request.description %>
+</p>
+
+<%= link_to 'Add a Recommendation', new_recommendation_path(request: @recommendation_request) %>
+
+

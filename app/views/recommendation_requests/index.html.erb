@@ -1,0 +1,27 @@
+<h1>Listing recommendation_requests</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>City</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @recommendation_requests.each do |recommendation_request| %>
+  <tr>
+    <td><%= recommendation_request.user_id %></td>
+    <td><%= recommendation_request.city_id %></td>
+    <td><%= recommendation_request.description %></td>
+    <td><%= link_to 'Show', recommendation_request %></td>
+    <td><%= link_to 'Edit', edit_recommendation_request_path(recommendation_request) %></td>
+    <td><%= link_to 'Destroy', recommendation_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Recommendation request', new_recommendation_request_path %>

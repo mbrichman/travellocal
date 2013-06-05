@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
 
   before_save :downcase_input
 
+  def all_faves
+    recommendations = self.favorites.map {|fave| fave.place}
+    recommendations << self.wishlists.map {|wish| wish.place}
+    recommendations.flatten.sort
+  end
+
   def friends
     self.connections.map {|friend| friend.user_connection}
   end

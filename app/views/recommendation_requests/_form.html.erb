@@ -1,0 +1,31 @@
+<%= form_for(@recommendation_request) do |f| %>
+  <% if @recommendation_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recommendation_request.errors.count, "error") %> prohibited this recommendation_request from being saved:</h2>
+
+      <ul>
+      <% @recommendation_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :city_id, 'Where are you going?' %><br />
+    <%= f.collection_select :city_id, City.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description, 'Tell your friends what you\'re looking to do?' %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :friend_id, 'Who do you want to send this to?' %><br />
+      <%= f.collection_select :friend_id, current_user.friends, :id, :name %>
+
+
+  </div>
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+<% end %>

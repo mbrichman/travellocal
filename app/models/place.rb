@@ -17,6 +17,10 @@ class Place < ActiveRecord::Base
     self.address = self.address.downcase
   end
 
+  def title_name
+    self.name.titleize
+  end
+
   def self.search(search)
     if search
       where('neighborhood || name LIKE ?', "%#{search}%")

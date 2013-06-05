@@ -1,4 +1,10 @@
 Travellocal::Application.routes.draw do
+  resources :recommendations
+
+
+  resources :recommendation_requests
+
+
   root to: 'Home#index'
 
   resources :wishlists
