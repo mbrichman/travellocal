@@ -18,6 +18,7 @@ gem 'seed_dump'
 gem 'omniauth-facebook'
 
 gem 'paperclip'
+gem "paperclip-dropbox", ">= 1"
 
 # Gems used only for assets and not required
 # in production environments by default.
