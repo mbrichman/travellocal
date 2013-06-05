@@ -10,7 +10,7 @@ def smart_truncate(text, char_limit)
   text.split.reject do |word|
     size+=word.size
     size>char_limit
-  end.join(" ")
+  end.join(" ") + '...'
 end
 
 end

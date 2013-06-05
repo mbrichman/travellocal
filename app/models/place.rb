@@ -3,7 +3,7 @@ class Place < ActiveRecord::Base
   belongs_to :city
   has_many :reviews
   belongs_to :category
-  has_attached_file :photo, :styles => { :medium => "250x250#>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :photo, :styles => { :medium => "250x250#", :thumb => "100x100" }, :default_url => "/images/:style/missing.png"
 
   validates :address, :city_id, :name, :neighborhood, presence: true
 
