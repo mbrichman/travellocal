@@ -27,15 +27,14 @@ class User < ActiveRecord::Base
     self.connections.map {|friend| friend.user_connection}
   end
 
-  def friends_favorites
-    @favorites = Array.new
-    self.friends.each do |friend|
-      places = User.find(friend).favorites.map {|p| p.place.id }
-      @favorites << { :user => friend.id, :places => places }
-    end
-    # returns array of hashes [ { :user => friend1, places => [place1, place2] }
-    return @favorites
+  def friends_reviews
+    # @reviews = self.nth_level(1).map {|user| user.reviews.map {|review| review.place}}.flatten.uniq{|place| place.id}
+    friend_ids = self.nth_level(1).map {|u| u.id }
+    @user_reviews = Review.where(:user_id => friend_ids).group_by(&:place_id)
 
+  end
+  def friends_favorites
+    @favorites = User.first.nth_level(1).map {|u| u.favorites.map {|f| f.place}}.flatten
   end
 
   def last_trip

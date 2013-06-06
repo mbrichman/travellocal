@@ -10,22 +10,27 @@
   <div class="span4 primary row-fluid">
     <h3>My Trips <%= link_to 'Add Trip', new_trip_path, class: 'btn' %> </h3>
     <%= link_to 'Ask for Recommendations', new_recommendation_request_path, class: 'btn' %>
-  </div>
-  <div class="span4 primary row-fluid">
-        <h3><%= my_name %>Reviews</h3>
+
+    <h3><%= my_name %>Reviews</h3>
     <ul>
       <% @user.reviews.each do |review| %>
       <li><%= link_to review.place.try(:name).try(:titleize), review %></i></li>
       <% end %>
     </ul>
 
+  </div>
+  <div class="span4 primary row-fluid">
+
     <% if current_user == @user %>
     <h3><%= my_name %>Friend's Reviews</h3>
       <ul>
-        <% @user.nth_level(2).each do |contact| %>
-          <% contact.reviews.each do |review| %>
-            <li><%= link_to contact.try(:name).try(:capitalize), contact %> reviewed <%= link_to review.place.name.titleize, review %></li>
-          <% end %>
+        <% current_user.friends_reviews.each do |place| %>
+        <li><%= link_to Place.find(place.first).name.titleize, Place.find(place.first) %> reviewed by
+              <% place[1].each do |review| %>
+              <%= link_to review.user.name.capitalize, review %>
+            <% end %>
+        </li>
+
         <% end %>
       </ul>
 

@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :category %><br />
-    <%= f.text_field :category %>
-  </div>
-  <div class="field">
     <%= f.label :place_id %><br />
     <%= f.collection_select :place_id, Place.all, :id, :name %>
   </div>

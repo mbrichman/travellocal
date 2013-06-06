@@ -52,7 +52,7 @@
           <p><%= current_user.last_trip.name %></p>
           <h3>Where I Went</h3>
           <% current_user.last_trip.trip_places.each do |place|  %>
-          <p><%= link_to place.place.name.titleize %></p>
+          <p><%= link_to place.place.try(:name).try(:titleize) %></p>
           <% end %>
         </section>
       <% end %>
