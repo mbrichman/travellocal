@@ -18,7 +18,9 @@ class User < ActiveRecord::Base
   def all_faves
     recommendations = self.favorites.map {|fave| fave.place}
     recommendations << self.wishlists.map {|wish| wish.place}
-    recommendations.flatten.sort
+    recommendations = recommendations.flatten.sort.each do |r|
+      r.name = r.name.titleize
+    end
   end
 
   def friends

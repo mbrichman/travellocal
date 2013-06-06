@@ -9,7 +9,7 @@ class TripPlacesController < ApplicationController
   end
 
   def create
-
+      count = TripPlace.count
       #check if trip already exists to the city. If not create it
       #add the place to the trip
       trip = Trip.find_or_create_by_user_id_and_city_id(
@@ -19,12 +19,16 @@ class TripPlacesController < ApplicationController
               start_date: Date.tomorrow,
               end_date: Date.tomorrow + 1
               )
-      @trip_place = TripPlace.new
-      @trip_place.place_id = params[:place_id]
-      @trip_place.trip_id = trip.id
+      if params[:place_id]
+        @trip_place = TripPlace.create(place_id: params[:place_id], trip_id: trip.id)
+      elsif params[:reco_ids]
+        params[:reco_ids].each do |place|
+          @trip_place = TripPlace.create(place_id: place, trip_id: trip.id)
+        end
+      end
 
     respond_to do |format|
-      if @trip_place.save
+      if TripPlace.count > count
         @places = Place.all
         format.html { redirect_to trip_path(@trip_place.trip_id), notice: 'The place has been added to your trip' }
         format.json { render json: @trip_place, status: :created, location: @trip_place }

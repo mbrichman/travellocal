@@ -10,11 +10,31 @@
   <%= @recommendation_request.city.name %>
 </p>
 
-<p>
+<p
   <b>Description:</b>
   <%= @recommendation_request.description %>
 </p>
 
-<%= link_to 'Add a Recommendation', new_recommendation_path(request: @recommendation_request) %>
+<% if @recommendation_request.recommendations %>
+  <%= form_tag add_to_trip_path(city_id: @recommendation_request.city.id) do %>
+    <table class="table">
+        <th></th>
+        <th>Recommendations</th>
+        <% @recommendation_request.recommendations.each do |r| %>
+            <tr><td><%= check_box_tag "reco_ids[]", r.place_id %></td>
+                <td><%= link_to r.user.name.capitalize, r.user %> recommends:<br>
+                  <%= link_to r.place.name.titleize, r.place, :target => '_blank' %> saying "<%= r.comment %>"
+                </td>
+            </tr>
+        <% end %>
+      <% end %>
+  </table>
+  <%= hidden_field_tag :city_id, @recommendation_request.city_id %>
+  <%= submit_tag 'Add to Trip' ,class: 'btn' %>
+<% end %>
+<% if current_user == @recommendation_request.user %>
 
+<% else %>
+  <%= link_to 'Add a Recommendation', new_recommendation_path(request: @recommendation_request) %>
+<% end %>
 

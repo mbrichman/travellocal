@@ -25,7 +25,7 @@ class Place < ActiveRecord::Base
     if search
       where('neighborhood || name LIKE ?', "%#{search}%")
     else
-      self.all
+      self.order("name")
     end
   end
 

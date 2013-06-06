@@ -40,8 +40,11 @@ class RecommendationRequestsController < ApplicationController
   # POST /recommendation_requests
   # POST /recommendation_requests.json
   def create
-    @recommendation_request = RecommendationRequest.new(params[:recommendation_request])
+    @recommendation_request = RecommendationRequest.new
+    @recommendation_request.city_id = params[:city_id]
     @recommendation_request.user_id = current_user.id
+    @recommendation_request.description = params[:description]
+    @recommendation_request.friend_id = params[:friend_ids][0]
 
     respond_to do |format|
       if @recommendation_request.save
@@ -80,5 +83,12 @@ class RecommendationRequestsController < ApplicationController
       format.html { redirect_to recommendation_requests_url }
       format.json { head :no_content }
     end
+  end
+
+  def add_to_trip
+    city = City.find(parms[:city_id])
+    t = Trip.create(name: city.name, start_date: Date.today + 30, end_date: Date.today + 37 )
+
+    redirect_to trips_path
   end
 end

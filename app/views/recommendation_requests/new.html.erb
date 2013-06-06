@@ -1,5 +1,33 @@
 <h1>New Recommendation Request</h1>
 
-<%= render 'form' %>
+<%= form_tag recommendation_requests_path do %>
+  <% if @recommendation_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recommendation_request.errors.count, "error") %> prohibited this recommendation_request from being saved:</h2>
 
-<%= link_to 'Back', recommendation_requests_path %>
+      <ul>
+      <% @recommendation_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :city_id, 'Where do you want to go?' %><br />
+    <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= label_tag :description, 'Tell your friends what you\'re looking to do?' %><br />
+    <%= text_area_tag :description %>
+  </div>
+
+    Who do you want to send this to?<br />
+      <% current_user.friends.each do |friend|  %>
+       <%= check_box_tag "friend_ids[]", friend.id %> <%= label_tag "friend_ids[]", friend.name.capitalize %><br>
+      <% end %>
+<br>
+  <div class="actions">
+    <%= submit_tag 'Create' %>
+  </div>
+<% end %>

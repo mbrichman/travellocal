@@ -3,6 +3,7 @@ Travellocal::Application.routes.draw do
 
 
   resources :recommendation_requests
+  post '/recommendation_requests/add_to_trip', 'recommendation_requests#add_to_trip'
 
 
   root to: 'Home#index'

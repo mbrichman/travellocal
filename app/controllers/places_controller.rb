@@ -16,6 +16,7 @@ end
       @places = Place.where(category_id: category).order(:name)
     else
       @places = Place.search(params[:search])
+      @places.order("name")
     end
 
     respond_to do |format|
