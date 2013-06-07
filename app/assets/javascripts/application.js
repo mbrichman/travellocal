@@ -18,10 +18,13 @@
 (function($) {
 
   $('.dropdown-toggle').dropdown();
-  $("img").each(function() {
-    $(this).hide();
+
+  // fade load in images
+  var imgs = $("#main img");
+  imgs.hide();
+  imgs.each(function() {
     $(this).load(function() {
-      $(this).fadeIn();
+      $(this).delay(400).fadeIn();
     });
   });
 
