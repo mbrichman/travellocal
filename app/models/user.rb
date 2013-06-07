@@ -62,8 +62,20 @@ class User < ActiveRecord::Base
     return array.uniq
   end
 
+  # def get_connections_by_level(level)
+  #   self.nth_level(level).map {|user| user.name.capitalize}.join(' ')
+  # end
+
   def get_connections_by_level(level)
-    self.nth_level(level).map {|user| user.name.capitalize}.join(' ')
+    if level == 1
+      self.clean_connections[:level1]
+    elsif level == 2
+      self.clean_connections[:level2]
+    elsif level == 3
+      self.clean_connections[:level3]
+    end
+
+
   end
 
   def clean_connections
@@ -71,11 +83,11 @@ class User < ActiveRecord::Base
     two = Array.new
     three = Array.new
     self.connections.each do |first|
-      network << {1 => first.user_connection }
+      network << {1 => first.user_connection.name.capitalize }
       first.user_connection.connections.each do |second|
-        network << {2 => second.user_connection}
+        network << {2 => second.user_connection.name.capitalize}
         second.user_connection.connections.each do |third|
-          network << {3 => third.user_connection}
+          network << {3 => third.user_connection.name.capitalize}
         end
       end
     end
@@ -87,7 +99,7 @@ class User < ActiveRecord::Base
     level3.reject! {|n| level2.include?(n)}
     level3.reject! {|n| level1.include?(n)}
     level3.reject! {|n| self.name == n}
-    @users = [{:level1 => level1 }, {:level2 => level2}, {:level3 => level3}]
+    users = {:level1 => level1 , :level2 => level2, :level3 => level3}
   end
 
 end
