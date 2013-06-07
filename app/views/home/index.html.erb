@@ -60,18 +60,8 @@
     <!-- END if logged-in -->
   <% else %>
     <!-- if not logged-in -->
-      <aside class="span3">
-        <section>
-          <h3>Hotel/Lodging</h3>
-        </section>
-      </aside>
-      <div class="span6 primary">
-        <div id="business-slide" class="carousel slide">
-          <ol class="carousel-indicators">
-            <li data-target="#business-slide" data-slide-to="0" class="active"></li>
-            <li data-target="#business-slide" data-slide-to="1"></li>
-            <li data-target="#business-slide" data-slide-to="2"></li>
-          </ol>
+      <div class="primary">
+        <div id="business-slide" class="main carousel slide">
           <div class="carousel-inner">
             <!-- These are the carousel images -->
             <div class="active item">
@@ -93,90 +83,11 @@
               </div>
             <% end %>
           </div>
+          <a class="carousel-control left" href="#business-slide" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#business-slide" data-slide="next">&rsaquo;</a>
         </div>
-        <h1>Heading 1</h1>
-        <h2>Heading 2</h2>
-        <h3>Heading 3</h3>
-        <h4>Heading 4</h4>
-        <h5>Heading 5</h5>
-        <h6>Heading 6</h6>
-        <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <ul>
-          <li>List Item 1</li>
-          <li>List Item 2</li>
-          <li>List Item 3
-            <ol>
-            <li>List Item 1</li>
-            <li>List Item 2</li>
-            <li>List Item 3</li>
-            <li>List Item 4
-              <ol>
-                <li>List Item 1</li>
-                <li>List Item 2</li>
-                <li>List Item 3</li>
-                <li>List Item 4</li>
-                <li>List Item 5</li>
-              </ol>
-            </li>
-            <li>List Item 5</li>
-          </ol>
-          </li>
-          <li>List Item 4</li>
-          <li>List Item 5</li>
-        </ul>
-        <ol>
-          <li>List Item 1</li>
-          <li>List Item 2</li>
-          <li>List Item 3</li>
-          <li>List Item 4
-            <ul>
-              <li>List Item 1</li>
-              <li>List Item 2
-                <ul>
-                  <li>List Item 1</li>
-                  <li>List Item 2</li>
-                  <li>List Item 3</li>
-                  <li>List Item 4</li>
-                  <li>List Item 5</li>
-                </ul>
-              </li>
-              <li>List Item 3</li>
-              <li>List Item 4</li>
-              <li>List Item 5</li>
-            </ul>
-          </li>
-          <li>List Item 5</li>
-        </ol>
-
-        <dl>
-          <dt>Definition Term</dt>
-            <dd>Defintion 1</dd>
-            <dd>Defintion 2</dd>
-          <dt>Definition Term</dt>
-            <dd>Defintion 1</dd>
-          <dt>Definition Term</dt>
-            <dd>Defintion 1</dd>
-            <dd>Defintion 2</dd>
-            <dd>Defintion 3</dd>
-        </dl>
-
+        
       </div>
-      <aside class="span3">
-        <section>
-          <h3>Transportation</h3>
-        </section>
-      <!--
-        <section>
-          <%= form_tag places_path,class: 'navbar-search' , method: 'get' do %>
-            <%= text_field_tag :search, nil, class: "search-query", placeholder: 'Search Places' %>
-          <% end %>
-        </section>
-        <section>
-          <h3>Quick Results</h3>
-        </section>
-      </aside> -->
-      <!-- END if not logged-in -->
   <% end %>
 
 </div>

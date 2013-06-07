@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_tree .
+
+(function($) {
+
+  $(function() {
+    $('.dropdown-toggle').dropdown();
+  });
+
+})(jQuery);

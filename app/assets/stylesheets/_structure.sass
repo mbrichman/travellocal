@@ -2,23 +2,73 @@
   margin: 0 auto
 
 .row-fluid
-  max-width: 1280px
+  // max-width: 1280px
   margin: 0 auto
 
 #header, #main, #footer
+  @include box-sizing(border-box)
   padding: 1.5em 1.5em .5em
 
 #header, #footer
-  background: #eeeeee
+  @include box-shadow(0 0 16px 2px rgba(0,0,0,.2))
+  border-bottom: 1px solid rgba(0,0,0,.25)
+  background: rgba(255,255,255,.9)
+
+#header
+  min-height: 120px
+  width: 100%
+  padding: 0
+  position: relative
+  z-index: 10
+  .branding
+    position: absolute
+    top: .5em
+    left: 2em
+    .site-name
+      display: none
+  .meta-header
+    @include border-radius(0 0 5px 5px)
+    padding: .5em
+    position: absolute
+    right: 3em
+    border: 1px solid #dddddd
+    border-top: 0
+    background: rgba(255,255,255,.9)
+    font-size: 75%
+    .form-group, .login-logout
+      display: inline-block
+      vertical-align: top
+    .form-group
+      margin-right: .5em
+      form
+        margin-top: 0
+        .btn:first-child
+          margin-left: 1px
+  .nav
+    margin-top: 60px
+
 
 #footer
+  border-top: 1px solid rgba(0,0,0,.25)
+  border-bottom: 0
+
+#footer
+  font-size: 80%
   .colophon
-    margin-top: 1.5em
     text-align: center
+
+#main
+  width: 100%
+  overflow-x: hidden
+
+
+
 
 
 /* Sticky Footer
  **************************************************/
+$footerPush: 3em
+
 html, body
   min-height: 100%
   height: 100%
@@ -26,10 +76,11 @@ html, body
   min-height: 100%
   position: relative
   #main
-    padding-bottom: 150px
-#footer
-  min-height: 100px
-  position: absolute
-  right: 0
-  bottom: 0
-  left: 0
+    padding-bottom: $footerPush
+  #footer
+    max-height: $footerPush
+    padding-top: .75em
+    position: absolute
+    right: 0
+    bottom: 0
+    left: 0
