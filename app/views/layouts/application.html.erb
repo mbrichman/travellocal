@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
+  <meta charset="utf-8" />
   <title>Travellocal</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -11,77 +12,55 @@
   <div id="page">
   <header id="header">
 
-    <div class="row-fluid">
-      <section class="span2 branding">
-        <%= link_to (image_tag 'logo-01.png', size: '150x150'), current_user %>
-      </section>
+    <div class="branding">
+      <h1 class="site-name">Travel Logo</h1>
+      <%= link_to (image_tag 'logo-01.png', size: '150x150', class: "site-logo"), current_user %>
+    </div>
 
-      <section class="span6 social">
-        <div class="form-group">
-          <div class="form-search search">
-            <div class="input-append">
-              <%= form_tag places_path,class: 'navbar-search' , method: 'get' do %>
-                  <%= text_field_tag :search, nil, class: "search-query", placeholder: 'Search Places' %>
-                  <%= submit_tag 'Search', class: 'btn' %>
-              <% end %>
-
-            </div>
-          </div>
-        </div>
-          <!--         <div class="social-feeds">
-          <ul class="items">
-
-            <li class="item">Social Feed</li>
-          </ul>
-        </div> -->
-      </section>
-      <section class="span3 connect">
-        <% if signed_in?  %>
-          <div>
+    <div class="meta-header">
+      <div class="form-group">
+        <div class="form-search search">
+          <%= form_tag places_path,class: 'navbar-search input-append input-prepend' , method: 'get' do %>
             <%= render 'cities_dropdown' %>
-            Welcome <%= link_to current_user.name.capitalize, user_path(current_user) %>!
-            <%= link_to 'Log Out', sessions_destroy_path, class: 'btn' %>
-          </div>
+            <%= text_field_tag :search, nil, class: "search-query", placeholder: 'Search Places' %>
+            <%= submit_tag 'Search', class: 'btn' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="login-logout">
+        <% if signed_in?  %>
+          <p>Welcome <%= link_to current_user.name.capitalize, user_path(current_user) %>!</p>
+          <%= link_to 'Log Out', sessions_destroy_path, class: 'btn' %>
         <% else %>
-          <%= render 'cities_dropdown' %>
           <%= link_to 'Log In', sessions_new_path, class: 'btn' %>
           <div class="login-form">
           </div>
         <% end %>
-        <section>
-        </section class="span2">
-      </section>
-      <section class="span10 nav nav-8">
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <nav class="span10 offset2 nav nav-8">
         <% Category.all.each do |category| %>
           <%= link_to category.name.titleize, places_path(category: category.name) %>
         <% end %>
-      </section>
+      </nav>
     </div>
 
   </header>
+
   <div id="main">
 
-  <%= yield %>
+    <%= yield %>
 
   </div>
+
     <footer id="footer">
-      <div class="row-fluid">
-<!--         <section class="span6 social-feed">
-          <ul class="items">
-            <li class="item">Twitter Social Feed</li>
-          </ul>
-        </section>
-        <section class="span6 social-feed">
-          <ul class="items">
-            <li class="item">Facebook Live Social Feed</li>
-          </ul>
-        </section>
-      </div> -->
       <div class="colophon">
         <p>&copy; Copyright 2013 Travel Local.</p>
       </div>
     </footer>
+
   </div>
-  <script type="text/javascript">$('.dropdown-toggle').dropdown();</script>
 </body>
 </html>

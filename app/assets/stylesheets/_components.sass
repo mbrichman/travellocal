@@ -13,19 +13,27 @@
       &:last-of-type
         margin-right: 0
   &.nav-8
-    margin-top: 50px
-    li, a
-      background-color: #000
-      color: #fff
+    a
+      position: relative
+      color: #333333
       font-family: 'special elite'
       width: 11.7689075634% /*12.5-2.521008403-.2100840336*/
       margin-right: .5%
-      padding: .5em 0
       float: left
-      border: 1px solid #ddd
       text-align: center
       &:last-of-type
         margin-right: 0
+        &:after
+          content: ""
+      &:after
+        display: block
+        content: "|"
+        position: absolute
+        top: 0
+        right: 0
+        color: #dddddd
+        font-weight: normal
+
 
 /* Items
  **************************************************/
@@ -89,6 +97,30 @@
       background: rgba(0,0,0,.7)
       color: #ffffff
 
+.main#business-slide
+  max-height: 700px
+  width: 105%
+  margin-top: -1.5em
+  margin-left: -2.5%
+  overflow: hidden
+  .carousel-inner
+    .slide-text
+      width: 80%
+      margin: 0 auto
+      background: transparent
+  .carousel-control
+    text-shadow: 0 0 16px rgba(0,0,0,.35)
+    @include border-radius(50%)
+    width: 100px
+    height: 100px
+    border: none
+    background: transparent
+    font-size: 2000%
+    &.left
+      left: 4%
+    &.right
+      right: 4%
+
 
 /* Grouped Forms
  **************************************************/
@@ -102,6 +134,12 @@
       margin-bottom: .5em
     label
       display: inline-block
+
+.form-group
+  .form-search
+    .input-append.input-prepend
+      .search-query
+        @include border-radius(0)
 
 
 /* Listings
