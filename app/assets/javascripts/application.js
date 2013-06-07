@@ -17,8 +17,12 @@
 
 (function($) {
 
-  $(function() {
-    $('.dropdown-toggle').dropdown();
+  $('.dropdown-toggle').dropdown();
+  $("img").each(function() {
+    $(this).hide();
+    $(this).load(function() {
+      $(this).fadeIn();
+    });
   });
 
 })(jQuery);
