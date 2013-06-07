@@ -19,6 +19,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th></th>
       <th>Email</th>
       <th>Hometown</th>
       <th>Count</th>
@@ -31,24 +32,27 @@
   <tbody>
   <% @users.each do |user| %>
   <% @network = user.clean_connections %>
+  <% @level_one = current_user.get_connections_by_level(1) %>
     <tr>
       <td><%= link_to user.name.capitalize, user_path(user.id) %></td>
+      <% if signed_in? && current_user == user %>
+        <td></td>
+        <% else %>
+        <td>
+          <% unless @level_one.include?(user.name) %>
+           <%= form_tag connect_path, method: 'post' do %>
+            <%= hidden_field_tag :connection_id, user.id %>
+            <%= submit_tag 'Connect' %>
+            <% end %>
+          <% end %>
+        </td>
+      <% end %>
       <td><%= user.email %></td>
       <td><%= user.city.try(:name) %></td>
       <td><%= user.connections.count %></td>
       <td><%= user.get_connections_by_level(1).map {|name| name.capitalize}.join(', ') %></td>
       <td><%= user.get_connections_by_level(2).map {|name| name.capitalize}.join(', ') %></td>
       <td><%= user.get_connections_by_level(3).map {|name| name.capitalize}.join(', ') %></td>
-      <% if signed_in? && current_user == user %>
-        <td></td>
-        <% else %>
-        <td>
-          <%= form_tag connect_path, method: 'post' do %>
-          <%= hidden_field_tag :connection_id, user.id %>
-          <%= submit_tag 'Connect' %>
-          <% end %>
-        </td>
-      <% end %>
 
 
     </tr>

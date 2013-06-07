@@ -79,27 +79,15 @@ class User < ActiveRecord::Base
   end
 
   def clean_connections
-    network = Array.new
-    two = Array.new
-    three = Array.new
-    self.connections.each do |first|
-      network << {1 => first.user_connection.name }
-      first.user_connection.connections.each do |second|
-        network << {2 => second.user_connection.name}
-        second.user_connection.connections.each do |third|
-          network << {3 => third.user_connection.name}
-        end
-      end
-    end
-    level1 = network.select {|n| n[1]}.uniq.map{|n| n[1]}
-    level2 = network.select {|n| n[2]}.uniq.map{|n| n[2]}
-    level3 = network.select {|n| n[3]}.uniq.map{|n| n[3]}
-    level2.reject! {|n| level1.include?(n)}
-    level2.reject! {|n| self.name == n}
-    level3.reject! {|n| level2.include?(n)}
-    level3.reject! {|n| level1.include?(n)}
-    level3.reject! {|n| self.name == n}
-    users = {:level1 => level1 , :level2 => level2, :level3 => level3}
+    one = self.nth_level(1).uniq.map{|user| user.name}
+    two = self.nth_level(2).uniq.map{|user| user.name}
+    three = self.nth_level(3).uniq.map{|user| user.name}
+    two.reject! {|n| one.include?(n)}
+    two.reject! {|n| self.name == n}
+    three.reject! {|n| two.include?(n)}
+    three.reject! {|n| one.include?(n)}
+    three.reject! {|n| self.name == n}
+    users = {:level1 => one , :level2 => two, :level3 => three}
   end
 
 end
