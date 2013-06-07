@@ -13,7 +13,7 @@
 
     <div class="branding">
       <h1 class="site-name">Travel Logo</h1>
-      <%= link_to (image_tag 'logo-01.png', size: '150x150', class: "site-logo"), current_user %>
+      <%= link_to (image_tag 'logo-01.png', size: '150x150', class: "site-logo"), places_path %>
     </div>
 
     <div class="meta-header">
@@ -32,6 +32,7 @@
           <%= link_to 'Log Out', sessions_destroy_path, class: 'btn' %>
         <% else %>
           <%= link_to 'Log In', sessions_new_path, class: 'btn' %>
+          <%= link_to 'Sign Up', new_user_path, class: 'btn' %>
           <div class="login-form">
           </div>
         <% end %>

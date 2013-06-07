@@ -83,11 +83,11 @@ class User < ActiveRecord::Base
     two = Array.new
     three = Array.new
     self.connections.each do |first|
-      network << {1 => first.user_connection.name.capitalize }
+      network << {1 => first.user_connection.name }
       first.user_connection.connections.each do |second|
-        network << {2 => second.user_connection.name.capitalize}
+        network << {2 => second.user_connection.name}
         second.user_connection.connections.each do |third|
-          network << {3 => third.user_connection.name.capitalize}
+          network << {3 => third.user_connection.name}
         end
       end
     end

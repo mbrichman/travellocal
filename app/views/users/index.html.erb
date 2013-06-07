@@ -36,9 +36,9 @@
       <td><%= user.email %></td>
       <td><%= user.city.try(:name) %></td>
       <td><%= user.connections.count %></td>
-      <td><%= user.get_connections_by_level(1).join(', ') %></td>
-      <td><%= user.get_connections_by_level(2).join(', ') %></td>
-      <td><%= user.get_connections_by_level(3).join(', ') %></td>
+      <td><%= user.get_connections_by_level(1).map {|name| name.capitalize}.join(', ') %></td>
+      <td><%= user.get_connections_by_level(2).map {|name| name.capitalize}.join(', ') %></td>
+      <td><%= user.get_connections_by_level(3).map {|name| name.capitalize}.join(', ') %></td>
       <% if signed_in? && current_user == user %>
         <td></td>
         <% else %>
