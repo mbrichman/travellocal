@@ -11,7 +11,10 @@
     <div class="row-fluid">
       <div class="span6">
         <div>
-          <%= image_tag @place.photo.url(:medium) %>
+          <%= image_tag @place.photo.url(:medium) %><br>
+          <div class="caption">
+            <%= friends_fave.count %> of your friends have favorited <%= @place.name.titleize %>
+          </div>
         </div>
         <% if signed_in? %>
         <div class="actions-btns">

@@ -1,0 +1,13 @@
+    <h3>Friends' Favorites</h3>
+      <ul>
+        <% current_user.friends.each do |friend| %>
+          <% unless friend.favorites.count == 0 %>
+            <li><%= "#{friend.name.capitalize} likes:" %></li>
+            <ul>
+              <% friend.favorites.map {|fave| fave.place }.each do |place| %>
+                <li><%= link_to place.name.titleize, place %> in <%= place.city.name.titleize %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      </ul>

@@ -1,6 +1,14 @@
-app_key: "v5xs2d8uyvithm9"
-app_secret: "629cspx7gn2ksdm"
-access_token: "uuw5npa67mv7igj"
-access_token_secret: "t67d5kd15q1ak3i"
+app_key: "bsqgxskdiroq3og"
+app_secret: "pwr18yy6nxyr42c"
+access_token: "q3igm5716ygatg7"
+access_token_secret: "8jmrjnx1y15mmbp"
 user_id: "1329512"
 access_type: "dropbox"
+
+
+# ENV['APP_KEY']
+# ENV['APP_SECRET']
+# ENV['ACCESS_TOKEN']
+# ENV['ACCESS_TOKEN_SECRET']
+# ENV['USER_ID']
+# ENV['ACCESS_TYPE']

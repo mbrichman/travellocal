@@ -105,4 +105,10 @@ end
       format.json { head :no_content }
     end
   end
+
+  def faves
+
+  end
+  def hot
+  end
 end

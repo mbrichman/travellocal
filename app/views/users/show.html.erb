@@ -67,40 +67,8 @@
         <% end %>
       </ul>
 
-    <h3>Friends' Favorites</h3>
-      <%= form_tag favorites_path,class: 'navbar-search pull-left' , method: 'get' do %>
-        <%= text_field_tag :search, nil, class: "search-query span3", placeholder: 'Search Favorites' %>
-      <% end %>
-      <br>
-      <br>
-      <br>
-      <ul>
-        <% @user.friends.each do |friend| %>
-          <% unless friend.favorites.count == 0 %>
-            <li><%= "#{friend.name.capitalize} likes:" %></li>
-            <ul>
-              <% friend.favorites.map {|fave| fave.place }.each do |place| %>
-                <li><%= link_to place.name.titleize, place %> in <%= place.city.name.titleize %></li>
-              <% end %>
-            </ul>
-          <% end %>
-        <% end %>
-      </ul>
   </div>
-  <div class="span4 primary row-fluid">
-    <h3><%= my_name %>Wishlist</h3>
-    <ul>
-      <% current_user.wishlists.each do |wish| %>
-          <li><%= wish.place.name.titleize %> <%= link_to raw("<i class=\"icon-remove\"></i>"), wishlist_path(wish), method: 'delete' %></li>
-        <% end %>
-    </ul>
-    <h3><%= my_name %>Favorites</h3>
-    <ul>
-      <% current_user.favorites.each do |favorite| %>
-          <li><%= favorite.place.name.titleize %> <%= link_to raw("<i class=\"icon-remove\"></i>"), favorite_path(favorite), method: 'delete' %></li>
-        <% end %>
-    </ul>
-  </div>
+
     <% end %>
 </div>
 
