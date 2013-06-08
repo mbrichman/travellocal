@@ -30,11 +30,13 @@
       <% end %>
   </table>
   <%= hidden_field_tag :city_id, @recommendation_request.city_id %>
-  <%= submit_tag 'Add to Trip' ,class: 'btn' %>
+  <% if @recommendation_request.user == current_user %>
+    <%= submit_tag 'Add to Trip' ,class: 'btn' %>
+  <% end %>
 <% end %>
 <% if current_user == @recommendation_request.user %>
 
 <% else %>
-  <%= link_to 'Add a Recommendation', new_recommendation_path(request: @recommendation_request) %>
+  <%= link_to 'Add a Recommendation', new_recommendation_path(request: @recommendation_request), class: 'btn btn-primary' %>
 <% end %>
 

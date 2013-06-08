@@ -62,10 +62,6 @@ class User < ActiveRecord::Base
     return array.uniq
   end
 
-  # def get_connections_by_level(level)
-  #   self.nth_level(level).map {|user| user.name.capitalize}.join(' ')
-  # end
-
   def get_connections_by_level(level)
     if level == 1
       self.clean_connections[:level1]
@@ -74,20 +70,48 @@ class User < ActiveRecord::Base
     elsif level == 3
       self.clean_connections[:level3]
     end
-
-
   end
 
   def clean_connections
-    one = self.nth_level(1).uniq.map{|user| user.name}
-    two = self.nth_level(2).uniq.map{|user| user.name}
-    three = self.nth_level(3).uniq.map{|user| user.name}
-    two.reject! {|n| one.include?(n)}
-    two.reject! {|n| self.name == n}
-    three.reject! {|n| two.include?(n)}
-    three.reject! {|n| one.include?(n)}
-    three.reject! {|n| self.name == n}
-    users = {:level1 => one , :level2 => two, :level3 => three}
+    level1 = self.nth_level(1).uniq.map{|user| user.name}
+    level2 = self.nth_level(2).uniq.map{|user| user.name}
+    level3 = self.nth_level(3).uniq.map{|user| user.name}
+    level2.reject! {|n| level1.include?(n)}
+    level2.reject! {|n| self.name == n}
+    level3.reject! {|n| level2.include?(n)}
+    level3.reject! {|n| level1.include?(n)}
+    level3.reject! {|n| self.name == n}
+    users = {:level1 => level1 , :level2 => level2, :level3 => level3}
+  end
+
+  def find_level(user)
+    @level1 = self.nth_level(1).uniq
+    @level2 = self.nth_level(2).uniq
+    @level3 = self.nth_level(3).uniq
+    if @level1.include?(user)
+      return "1st"
+    elsif @level2.include?(user)
+      return "2nd"
+    elsif @level3.include?(user)
+      return "3rd"
+    else
+      return 'Not in Network'
+    end
+  end
+
+  def play
+    @level1 = self.nth_level(1).uniq.map{|user| user.name}
+    @level2 = self.nth_level(2).uniq.map{|user| user.name}
+    @level3 = self.nth_level(3).uniq.map{|user| user.name}
+    levels = [@level1 , @level2, @level3]
+    levels.each_with_index do |array, i|
+      if i == 1
+      else
+        array.reject! {|n| levels[i-1].include?(n)}
+        array.reject! {|n| self.name == n}
+      end
+    end
+    return levels
   end
 
 end

@@ -9,7 +9,11 @@
 <div class="row-fluid">
   <div class="span4 primary row-fluid">
     <h3>My Trips <%= link_to 'Add Trip', new_trip_path, class: 'btn' %> </h3>
-    <%= link_to 'Ask for Recommendations', new_recommendation_request_path, class: 'btn' %>
+    <%= link_to 'Ask for Recommendations', '#myModal', class: 'btn', :"data-target" => "#myModal", :"data-toggle" => "modal" %>
+
+
+
+
 
     <h3><%= my_name %>Reviews</h3>
     <ul>
@@ -25,8 +29,11 @@
 
     <% if current_user == @user %>
 
-    <h3><%= my_name %>Recommendation Requests</h3>
+    <h3>Recommendation Requests</h3>
     <ul>
+      <% RecommendationRequest.where(:user_id => current_user.id).each do |request| %>
+          <li>I asked for recommendations for a trip to <%= request.city.try(:name).try(:capitalize) %>
+        <% end %>
       <% RecommendationRequest.where(:friend_id => current_user.id).each do |request| %>
           <li><%= link_to request.user.name.capitalize, request %> wants to go to <%= request.city.name.capitalize %>
         <% end %>
@@ -96,4 +103,36 @@
   </div>
     <% end %>
 </div>
+
+<!-- Modal -->
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Request Recommendations</h3>
+      </div>
+      <div class="modal-body">
+        <%= form_tag recommendation_requests_path do %>
+
+        <div class="field">
+          <%= label_tag :city_id, 'Where do you want to go?' %><br />
+          <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name) %>
+      </div>
+      <div class="field">
+          <%= label_tag :description, 'Tell your friends what you\'re looking to do?' %><br />
+          <%= text_area_tag :description %>
+      </div>
+        Who do you want to send this to?<br />
+          <% current_user.friends.each do |friend|  %>
+           <%= check_box_tag "friend_ids[]", friend.id %> <%= label_tag "friend_ids[]", friend.name.capitalize %><br>
+          <% end %>
+      <br>
+      <div class="actions">
+      </div>
+          </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Close</button>
+        <%= submit_tag 'Submit', class: "btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
 

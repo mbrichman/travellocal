@@ -20,6 +20,7 @@
     <tr>
       <th>Name</th>
       <th></th>
+      <th></th>
       <th>Email</th>
       <th>Hometown</th>
       <th>Count</th>
@@ -35,6 +36,12 @@
   <% @level_one = current_user.get_connections_by_level(1) %>
     <tr>
       <td><%= link_to user.name.capitalize, user_path(user.id) %></td>
+      <% if current_user == user %>
+        <td></td>
+      <% else %>
+      <td><span class="badge badge-travel"><%= current_user.find_level(user) %></span></td>
+      <% end %>
+
       <% if signed_in? && current_user == user %>
         <td></td>
         <% else %>

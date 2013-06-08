@@ -26,7 +26,7 @@ end
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.order("id DESC")
 
     respond_to do |format|
       format.html # index.html.erb
