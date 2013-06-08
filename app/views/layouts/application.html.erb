@@ -51,6 +51,7 @@
 
   <div id="main" class="row-fluid">
 
+  <% if signed_in? %>
     <aside class="span3 nav-user affix" data-spy="affix" data-offset-top="0">
       <div class="user-meta">
         <h3>Navigation Title</h3>
@@ -102,10 +103,13 @@
     </aside>
 
     <div class="offset3 span9 primary">
+  <% end %>
 
       <%= yield %>
 
+  <% if signed_in? %>
     </div>
+  <% end %>
 
   </div>
 
