@@ -11,10 +11,11 @@
 
 #header, #footer
   @include box-shadow(0 0 16px 2px rgba(0,0,0,.2))
-  border-bottom: 1px solid rgba(0,0,0,.25)
+  border-bottom: 1px solid rgba(255,255,255,.15)
   background: rgba(255,255,255,.9)
 
 #header
+  @include box-shadow(0 0 16px 2px rgba(0,0,0,.5))
   @include background-image(linear-gradient(top, #00a9ac, #009497))
   @include filter-gradient(#00a9ac, #009497, vertical)
   min-height: 120px
@@ -74,6 +75,7 @@
 
 #main
   width: 100%
+  margin-top: 3em
   overflow-x: hidden
 
 
