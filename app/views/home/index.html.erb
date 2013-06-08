@@ -1,21 +1,92 @@
 <div class="row-fluid">
-  <div class="span4 primary row-fluid">
-    <h3>My Trips <%= link_to 'Add Trip', new_trip_path, class: 'btn' %> </h3>
-    <%= link_to 'Ask for Recommendations', nil, class: 'btn', :"data-target" => "#myModal", :"data-toggle" => "modal" %>
+  <% if signed_in? %>
+    <!-- if logged-in -->
+        <aside class="span3">
+          <section>
+            <% if current_user.trips.count > 0 %>
+              <div>
+                <h3>My Trips</h3>
+                <ul class="items">
+                  <% current_user.trips.each do |trip| %>
+                  <li><time><%= trip.start_date %></time><p><%= link_to trip.name.titleize, trip %></p></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </section>
+        </aside>
+      <!-- carousel stuff
+        <div class="span9 primary">
+          <div id="featured-slide" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="active item">
+                <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/nightlife/" alt="Image Alternate Text" /></a>
+              </div>
+              <div class="item">
+                <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/nature/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/nature/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/150/150/nature/" alt="Image Alternate Text" /></a>
+              </div>
+              <div class="item">
+                <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+                <a href="#"><img src="http://lorempixel.com/g/150/150/people/" alt="Image Alternate Text" /></a>
+              </div>
+            </div>
+            <a class="carousel-control left" href="#featured-slide" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#featured-slide" data-slide="next">&rsaquo;</a>
+          </div>
+      -->
+      <% if current_user.trips.count >0 %>
+        <section>
+          <h2>Recent Activity</h2>
+          <p><%= current_user.last_trip.name %></p>
+          <h3>Where I Went</h3>
+          <% current_user.last_trip.trip_places.each do |place|  %>
+          <p><%= link_to place.place.try(:name).try(:titleize) %></p>
+          <% end %>
+        </section>
+      <% end %>
+        </div>
+    <!-- END if logged-in -->
+  <% else %>
+    <!-- if not logged-in -->
+      <div class="primary">
+        <div id="business-slide" class="main carousel slide">
+          <div class="carousel-inner">
+            <!-- These are the carousel images -->
+            <div class="active item">
+              <% @the_place = Place.find(3) %>
+              <%= image_tag @the_place.photo %>
+              <!-- <img src="http://lorempixel.com/600/400/city/" /> -->
+              <div class="slide-text">
+                <%= render 'photo_description' %>
+              </div>
+            </div>
+            <% @places.each do |place| %>
+              <div class="item">
+                <%= image_tag place.photo %>
+                <!-- <img src="http://lorempixel.com/600/400/city/" /> -->
+                <div class="slide-text">
+                <% @the_place = place %>
+                <%= render 'photo_description' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <a class="carousel-control left" href="#business-slide" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#business-slide" data-slide="next">&rsaquo;</a>
+        </div>
 
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+      </div>
+  <% end %>
 
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
 </div>

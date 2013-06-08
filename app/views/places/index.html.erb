@@ -17,29 +17,39 @@
   <h3>
     Travel Local<%= " #{params[:category].titleize}" if params[:category] %> in Chicago
     <%= link_to 'Add Place', new_place_path, class: 'btn btn-success' %>
-  </h3>
-  <ul class="items cols-1-3">
-    <% @places.order("name").each do |place| %>
-    <li>
-      <% if place.photo.present? %>
-        <%= image_tag place.photo.url(:medium) %>
-      <% else %>
-        <img src="http://lorempixel.com/200/150/business/" />
-      <% end %>
-      <div class="item-text">
-        <h5><%= link_to place.name.titleize, place %>
-          <% if signed_in? %>
-            <br>
-            <%= link_to raw("<i class=\"icon-thumbs-up\"></i>"), favorites_path(place_id: place.id), method: 'post', class: 'add-favorite', :"data-toggle" => "tooltip", title: 'Add to Favorites' %>
-            <%= link_to raw("<i class=\"icon-briefcase\"></i>"), wishlists_path(place_id: place.id), method: 'post', class: 'add-wishlist', :"data-toggle" => "tooltip", title: 'Add to Wishlist' %>
-            <%= link_to raw("<i class=\"icon-plane\"></i>"), add_to_trip_path(place_id: place.id, city_id: place.city_id), method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Add to Trip' %>
-            <% end %>
+    </h3>
+      <ul class="items cols-1-3">
+        <% @places.order("name").each do |place| %>
+        <li>
+          <% if place.photo.present? %>
+            <%= image_tag place.photo.url(:medium) %>
+          <% else %>
+            <img src="http://lorempixel.com/200/150/business/" />
+          <% end %>
+          <div class="item-text">
+            <h5><%= link_to place.name.titleize, place %>
+              <br>
+              <% if place.local_fave? %>
+                <%= link_to raw("<i class=\"icon-certificate\"></i>"), '#', method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Local Favorite' %>
+              <% end %>
+              <% if signed_in? %>
+                <%= link_to raw("<i class=\"icon-thumbs-up\"></i>"), favorites_path(place_id: place.id), method: 'post', class: 'add-favorite', :"data-toggle" => "tooltip", title: 'Add to Favorites' %>
+                <%= link_to raw("<i class=\"icon-briefcase\"></i>"), wishlists_path(place_id: place.id), method: 'post', class: 'add-wishlist', :"data-toggle" => "tooltip", title: 'Add to Wishlist' %>
+                <%= link_to raw("<i class=\"icon-plane\"></i>"), add_to_trip_path(place_id: place.id, city_id: place.city_id), method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Add to Trip' %>
+                <% end %>
+              <!--  raw html tooltips -->
+                <!-- <a href="#" class="add-favorite" data-toggle="tooltip" title="Add Favorite" data-trigger="hover"><i class="icon-thumbs-up"></i></a>
+                <a href="#" class="add-wishlist" data-toggle="tooltip" title="Add to Wishlist" data-trigger="hover"><i class="icon-briefcase"></i></a> -->
 
-        </h5>
-        <p><%= smart_truncate(place.description, 75) if place.description %></p>
-        <!-- <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' if place.description %></p> -->
-      </div>
-    </li>
-    <% end %>
-  </ul>
+            </h5>
+            <p><%= smart_truncate(place.description, 75) if place.description %></p>
+            <!-- <p><%= place.description.split(/\s/)[0..15].join(' ')+'...' if place.description %></p> -->
+          </div>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
 </div>
+>>>>>>> Stashed changes

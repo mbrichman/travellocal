@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def friends
-    self.nth_level(1)
+    self.nth_level(1).uniq
   end
 
   def friends_reviews

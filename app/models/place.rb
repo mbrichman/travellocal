@@ -29,8 +29,10 @@ class Place < ActiveRecord::Base
     end
   end
 
-  def is_favorite?
-    Favorite.find_by_place_id_and_user_id(place_id: self.id, user_id: User.first.id)
+  def is_favorite?(user)
+    if Favorite.where(user_id: user.id, place_id: self.id)
+      return user.name
+    end
   end
 
   def local_fave?
