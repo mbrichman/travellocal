@@ -1,110 +1,49 @@
-<div class="row-fluid">
-  <aside class="span3">
-    <section>
+<div>
+  <h3>
+    <%= @place.name.titleize %>
+    <% if signed_in? %>
+      <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-info' %>
+      <%= link_to 'Delete', place_path(@place), class: 'btn btn-danger', method: 'delete', confirm: 'Are you sure?' %>
+    <% end %>
+  </h3>
+  <div class="row-fluid">
+    <div class="span6">
+      <div>
+        <%= image_tag @place.photo.url(:medium) %>
+      </div>
       <% if signed_in? %>
-        <div>
-          <h3>Previous Trips</h3>
-          <ul class="items">
-            <% current_user.trips.each do |trip| %>
-              <li><time><%= trip.start_date %></time><p><%= link_to trip.name, trip %></p></li>
-            <% end %>
-          </ul>
+      <div class="actions-btns">
+          <%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
+          <%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn btn-primary' %>
         </div>
-      <% end %>
-    </section>
-  </aside>
-  <div class="span6 primary">
+        <% end %>
+      <div>
+      <h4>Description:</h4>
+      <%= @place.try(:description) %>
 
-    <h3>
-      <%= @place.name.titleize %>
-      <% if signed_in? %>
-        <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-info' %>
-        <%= link_to 'Delete', place_path(@place), class: 'btn btn-danger', method: 'delete', confirm: 'Are you sure?' %>
-      <% end %>
-    </h3>
-    <div class="row-fluid">
-      <div class="span6">
-        <div>
-          <%= image_tag @place.photo.url(:medium) %>
-        </div>
-        <% if signed_in? %>
-        <div class="actions-btns">
-            <%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
-            <%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn btn-primary' %>
-          </div>
+      </div>
+
+    </div>
+    <div class="span6">
+      <div>
+        <p><strong>City: </strong><%= @place.city.name %></p>
+        <p><strong>Category: </strong><%= @place.category.try(:name).try(:titleize) %></p>
+        <p><strong>Address: </strong><%= @place.address.try(:titleize) %></p>
+        <p><strong>Url: </strong><%= @place.url %></p>
+        <p><strong>Neighborhood: </strong><%= @place.neighborhood.try(:titleize) %></p>
+
+      </div>
+     <h4>
+          Reviews
+          <% if signed_in? %>
+          <%= link_to 'Add a Review', new_review_path, class: 'btn btn-primary' %>
           <% end %>
-        <div>
-        <h4>Description:</h4>
-        <%= @place.try(:description) %>
-
-        </div>
-
-      </div>
-      <div class="span6">
-        <div>
-          <p><strong>City: </strong><%= @place.city.name %></p>
-          <p><strong>Category: </strong><%= @place.category.try(:name).try(:titleize) %></p>
-          <p><strong>Address: </strong><%= @place.address.try(:titleize) %></p>
-          <p><strong>Url: </strong><%= @place.url %></p>
-          <p><strong>Neighborhood: </strong><%= @place.neighborhood.try(:titleize) %></p>
-
-        </div>
-       <h4>
-            Reviews
-            <% if signed_in? %>
-            <%= link_to 'Add a Review', new_review_path, class: 'btn btn-primary' %>
-            <% end %>
-          </h4>
-          <ul>
-            <% @place.reviews.each do |review| %>
-            <li><%= link_to review.user.name.try(:titleize), user_path(review.user) %> said:<br> <%= review.review_text %></li>
-            <% end %>
-          </ul>
-      </div>
+        </h4>
+        <ul>
+          <% @place.reviews.each do |review| %>
+          <li><%= link_to review.user.name.try(:titleize), user_path(review.user) %> said:<br> <%= review.review_text %></li>
+          <% end %>
+        </ul>
     </div>
   </div>
-  <aside class="span3 seconday">
-    <div class="listings">
-      <h5>Featured Business</h5>
-      <ul class="items">
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-        <li>
-          <img src="http://lorempixel.com/125/80/business/" class="span4" />
-          <div class="span8 item-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </aside>
 </div>
-
-('#example').tooltip(options)

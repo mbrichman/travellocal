@@ -49,9 +49,63 @@
 
   </header>
 
-  <div id="main">
+  <div id="main" class="row-fluid">
 
-    <%= yield %>
+    <aside class="span3 nav-user affix" data-spy="affix" data-offset-top="0">
+      <div class="user-meta">
+        <h3>Navigation Title</h3>
+        <nav>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+        </nav>
+      </div>
+      <div class="user-meta">
+        <h3>Navigation Title</h3>
+        <nav>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+        </nav>
+      </div>
+      <div class="user-meta">
+        <h3>Navigation Title</h3>
+        <nav>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+        </nav>
+      </div>
+      <div class="user-meta">
+        <h3>Navigation Title</h3>
+        <nav>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+          <a href="#">Nav link</a>
+        </nav>
+      </div>
+      <div class="user-meta">
+        <h3>Previous Trips</h3>
+        <ul class="items">
+          <%# current_user.trips.each do |trip| %>
+            <li>
+              <time>1234<%# trip.start_date %></time>
+              <p>lorem ipsum<%# link_to trip.name, trip %></p>
+            </li>
+          <%# end %>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="offset3 span9 primary">
+
+      <%= yield %>
+
+    </div>
 
   </div>
 

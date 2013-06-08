@@ -15,11 +15,17 @@
   background: rgba(255,255,255,.9)
 
 #header
+  @include background-image(linear-gradient(top, #00a9ac, #009497))
+  @include filter-gradient(#00a9ac, #009497, vertical)
   min-height: 120px
   width: 100%
   padding: 0
   position: relative
+  background-color: #00a9ac
+  color: #ffffff
   z-index: 10
+  a
+    color: #ffffff
   .branding
     position: absolute
     top: .5em
@@ -31,9 +37,9 @@
     padding: .5em
     position: absolute
     right: 3em
-    border: 1px solid #dddddd
+    border: 1px solid rgba(0,0,0,.1)
     border-top: 0
-    background: rgba(255,255,255,.9)
+    background: rgba(255,255,255,.2)
     font-size: 75%
     .form-group, .login-logout
       display: inline-block
@@ -44,6 +50,9 @@
         margin-top: 0
         .btn:first-child
           margin-left: 1px
+        color: #333333
+        a
+          color: #333333
     .login-logout
       p
         display: inline-block

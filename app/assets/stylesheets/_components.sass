@@ -2,6 +2,8 @@
  **************************************************/
 .nav
   margin-bottom: 0
+  a
+    color: #ffffff
   &.nav-6
     li, a
       width: 13.9355742304% /*16.666666667-2.521008403-.2100840336*/
@@ -15,7 +17,6 @@
   &.nav-8
     a
       position: relative
-      color: #333333
       font-family: 'special elite'
       width: 11.7689075634% /*12.5-2.521008403-.2100840336*/
       margin-right: .5%
@@ -201,3 +202,29 @@ label
 .label-travel,
 .badge-travel
   background-color: #00a9ac
+
+
+
+
+
+// Bootstrap Btn Overrides
+.btn
+  &:hover
+    background-position: 0
+
+.btn-danger
+  @include background-image(linear-gradient(top, #ff2a32, #c91e23))
+  @include filter-gradient(#ff2a32, #c91e23, vertical)
+  background-color: #ff2a32
+  &:hover
+    @include background-image(linear-gradient(top, #c91e23, #ff2a32))
+    @include filter-gradient(#c91e23, #ff2a32, vertical)
+    background-color: #c91e23
+.btn-success
+  @include background-image(linear-gradient(top, #89cdb1, #72ac95))
+  @include filter-gradient(#89cdb1, #72ac95, vertical)
+  background-color: #89cdb1
+  &:hover
+    @include background-image(linear-gradient(top, #72ac95, #89cdb1))
+    @include filter-gradient(#72ac95, #89cdb1, vertical)
+    background-color: #72ac95
