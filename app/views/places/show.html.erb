@@ -3,7 +3,7 @@
 
     <h3>
       <%= @place.name.titleize %>
-      <% if signed_in? %>
+      <% if signed_in? && current_user == User.find(14) %>
         <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-info' %>
         <%= link_to 'Delete', place_path(@place), class: 'btn btn-danger', method: 'delete', confirm: 'Are you sure?' %>
       <% end %>
@@ -12,9 +12,11 @@
       <div class="span6">
         <div>
           <%= image_tag @place.photo.url(:medium) %><br>
-          <div class="caption">
-            <%= friends_fave.count %> of your friends have favorited <%= @place.name.titleize %>
+          <div >
+            <span class="label"> <i class="icon-certificate icon-white"></i>&nbsp;Local Favorite</span>
+            <span class="label"> <%= friends_fave.count %> friends love this place</span>
           </div>
+
         </div>
         <% if signed_in? %>
         <div class="actions-btns">
@@ -31,11 +33,11 @@
       </div>
       <div class="span6">
         <div>
-          <p><strong>City: </strong><%= @place.city.name %></p>
-          <p><strong>Category: </strong><%= @place.category.try(:name).try(:titleize) %></p>
-          <p><strong>Address: </strong><%= @place.address.try(:titleize) %></p>
-          <p><strong>Url: </strong><%= @place.url %></p>
-          <p><strong>Neighborhood: </strong><%= @place.neighborhood.try(:titleize) %></p>
+          <p>Category: <%= @place.category.try(:name).try(:titleize) %></p>
+          <p><%= @place.address.try(:titleize) %></p>
+          <p><%= @place.city.name %></p>
+          <p><%= link_to @place.url, @place.url %></p>
+          <p>Neighborhood: <%= @place.neighborhood.try(:titleize) %></p>
 
         </div>
        <h4>
@@ -46,7 +48,13 @@
           </h4>
           <ul>
             <% @place.reviews.each do |review| %>
-            <li><%= link_to review.user.name.try(:titleize), user_path(review.user) %> said:<br> <%= review.review_text %></li>
+            <li>
+              <% if review.user.city == review.place.city %>
+                <%= link_to raw("<i class=\"icon-map-marker\"></i>"), '#', method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Local Reviewer' %>
+              <% else %>
+                <%= link_to raw("<i class=\"icon-road\"></i>"), '#', method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Local Reviewer' %>
+              <% end %>
+              <%= link_to review.user.name.try(:titleize), user_path(review.user) %> said:<br> <%= review.review_text %></li>
             <% end %>
           </ul>
       </div>

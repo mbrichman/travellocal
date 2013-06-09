@@ -13,7 +13,7 @@ end
 
     respond_to do |format|
       if @connection.save
-        format.html { redirect_to users_url, notice: 'Connection added.' }
+        format.html { redirect_to network_url(current_user), notice: 'Connection added.' }
         format.json { render json: @users }
       else
         @users = User.all
@@ -106,9 +106,15 @@ end
     end
   end
 
+  def network
+    @user = User.find(params[:id])
+    @users = User.all
+
+  end
   def faves
 
   end
   def hot
+    @users = User.all
   end
 end

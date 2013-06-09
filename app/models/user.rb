@@ -31,10 +31,13 @@ class User < ActiveRecord::Base
     # @reviews = self.nth_level(1).map {|user| user.reviews.map {|review| review.place}}.flatten.uniq{|place| place.id}
     friend_ids = friends.map {|u| u.id }
     @user_reviews = Review.where(:user_id => friend_ids).group_by(&:place_id)
-
   end
+
   def friends_favorites
-    @favorites = User.first.nth_level(1).map {|u| u.favorites.map {|f| f.place}}.flatten
+    # @favorites = User.first.nth_level(1).map {|u| u.favorites.map {|f| f.place}}.flatten
+    friend_ids = friends.map {|u| u.id }
+    favorites = Favorite.where(:user_id => friend_ids).group_by(&:place_id)
+
   end
 
   def last_trip

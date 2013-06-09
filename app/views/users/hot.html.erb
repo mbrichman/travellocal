@@ -1,8 +1,9 @@
-    <h3>Friends' Favorites</h3>
+  <div class="span4 primary row-fluid favorites">
+<!--     <h3>Friends' Favorites</h3>
       <ul>
         <% current_user.friends.each do |friend| %>
           <% unless friend.favorites.count == 0 %>
-            <li><%= "#{friend.name.capitalize} likes:" %></li>
+            <li><%= "#{friend.name.capitalize} loves:" %></li>
             <ul>
               <% friend.favorites.map {|fave| fave.place }.each do |place| %>
                 <li><%= link_to place.name.titleize, place %> in <%= place.city.name.titleize %></li>
@@ -10,4 +11,91 @@
             </ul>
           <% end %>
         <% end %>
+      </ul> -->
+      <h3>Friend's Favorites</h3>
+      <ul>
+        <% current_user.friends_favorites.each do |place| %>
+        <li><%= image_tag Place.find(place.first).photo.url(:thumb) %><%= link_to Place.find(place.first).name.titleize, Place.find(place.first) %> loved by
+              <% count =  place[1].count %>
+              <% place[1].each_with_index do |review, i| %>
+              <% if i + 1 == count %>
+                <%= link_to review.user.name.capitalize, review %>
+              <% else %>
+                <%= link_to review.user.name.capitalize + ',', review %>
+
+              <% end %>
+            <% end %>
+        </li>
+
+        <% end %>
       </ul>
+    </div>
+
+  <div class="span4 primary row-fluid favorites offset1">
+    <h3>Friends' Wishlists</h3>
+      <ul>
+        <% current_user.friends.each do |friend| %>
+          <% unless friend.wishlists.count == 0 %>
+            <li><%= "#{friend.name.capitalize} wants to visit:" %></li>
+            <ul>
+              <% friend.wishlists.map {|fave| fave.place }.each do |place| %>
+                <li><%= image_tag place.photo.url(:thumb) %><%= link_to place.name.titleize, place %> in <%= place.city.name.titleize %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      </ul>
+</div>
+<div class="span10 primary row-fluid favorites">
+  <h3>Other Activity in Your Network</h3>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th>Email</th>
+      <th>Hometown</th>
+      <th>Count</th>
+      <th>1st</th>
+      <th>2nd</th>
+      <th>3rd</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+  <% @level_one = current_user.get_connections_by_level(1) %>
+    <tr>
+      <td><%= link_to user.name.capitalize, user_path(user.id) %></td>
+      <% if current_user == user %>
+        <td></td>
+      <% else %>
+      <td><span class="badge badge-travel"><%= current_user.find_level(user) %></span></td>
+      <% end %>
+
+      <% if signed_in? && current_user == user %>
+        <td></td>
+        <% else %>
+        <td>
+          <% unless @level_one.include?(user.name) %>
+           <%= form_tag connect_path, method: 'post' do %>
+            <%= hidden_field_tag :connection_id, user.id %>
+            <%= submit_tag 'Connect' %>
+            <% end %>
+          <% end %>
+        </td>
+      <% end %>
+      <td><%= user.email %></td>
+      <td><%= user.city.try(:name) %></td>
+      <td><%= user.connections.count %></td>
+      <td><%= user.get_connections_by_level(1).map {|name| name.capitalize}.join(', ') %></td>
+      <td><%= user.get_connections_by_level(2).map {|name| name.capitalize}.join(', ') %></td>
+      <td><%= user.get_connections_by_level(3).map {|name| name.capitalize}.join(', ') %></td>
+
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

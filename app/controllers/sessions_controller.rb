@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user.present? && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to current_user
+      redirect_to hot_path
     else
       render 'new'
     end

@@ -29,6 +29,7 @@ Travellocal::Application.routes.draw do
   get 'sessions/new'
   post 'sessions/create'
   get 'sessions/destroy'
+  get '/users/:id/network', controller: 'users', action: 'network', as: 'network'
   get '/users/hot', controller: 'users', action: 'hot', as: 'hot'
   get '/users/faves', controller: 'users', action: 'faves', as: 'faves'
   resources :users

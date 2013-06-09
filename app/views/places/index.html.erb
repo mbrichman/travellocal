@@ -29,6 +29,8 @@
           <div class="item-text">
             <h5><%= link_to place.name.titleize, place %>
               <br>
+              <%= place.neighborhood.titleize %>
+              <br>
               <% if place.local_fave? %>
                 <%= link_to raw("<i class=\"icon-certificate\"></i>"), '#', method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Local Favorite' %>
               <% end %>
