@@ -52,7 +52,7 @@
   <div id="main" class="row-fluid">
 
   <% if signed_in? %>
-    <aside class="span3 nav-user affix">
+    <aside class="span3 nav-user">
       <div class="user-meta">
         <%= link_to 'Ask for Recommendations', '#myModal', class: 'btn', :"data-target" => "#myModal", :"data-toggle" => "modal" %>
       </div>
@@ -83,7 +83,7 @@
       </div> -->
     </aside>
 
-    <div class="offset3 span9 primary">
+    <div class="span9 primary">
   <% end %>
 
       <%= yield %>
@@ -105,41 +105,41 @@
   <!-- Modal -->
   <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
 
-      <%= form_tag recommendation_requests_path do %>
+    <%= form_tag recommendation_requests_path do %>
 
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">Request Recommendations</h3>
-        </div>
-      
-        <div class="modal-body">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Request Recommendations</h3>
+      </div>
+    
+      <div class="modal-body">
 
-          <div class="field">
-            <%= label_tag :city_id, 'Where do you want to go?' %><br />
-            <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name) %>
-          </div>
-
-          <div class="field">
-            <%= label_tag :description, 'Tell your friends what you\'re looking to do?' %><br />
-            <%= text_area_tag :description %>
-          </div>
-            
-          <p>Who do you want to send this to?</p>
-
-          <% current_user.friends.each do |friend|  %>
-            <%= check_box_tag "friend_ids[]", friend.id %> <%= label_tag "friend_ids[]", friend.name.capitalize %><br>
-          <% end %>
-
+        <div class="field">
+          <%= label_tag :city_id, 'Where do you want to go?' %><br />
+          <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name) %>
         </div>
 
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal">Close</button>
-          <%= submit_tag 'Submit', class: "btn btn-primary" %>
+        <div class="field">
+          <%= label_tag :description, 'Tell your friends what you\'re looking to do?' %><br />
+          <%= text_area_tag :description %>
         </div>
+          
+        <p>Who do you want to send this to?</p>
 
-      <% end %>
+        <% current_user.friends.each do |friend|  %>
+          <%= check_box_tag "friend_ids[]", friend.id %> <%= label_tag "friend_ids[]", friend.name.capitalize %><br>
+        <% end %>
 
-    </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Close</button>
+        <%= submit_tag 'Submit', class: "btn btn-primary" %>
+      </div>
+
+    <% end %>
+
+  </div>
 
   <%= javascript_include_tag "application" %>
 </body>
