@@ -1,9 +1,8 @@
-<h1>Listing trips</h1>
+<h2>Upcoming Trips</h2>
 
-<table>
+<table class="table">
   <tr>
-    <th>Name</th>
-    <th>User</th>
+    <th>Place</th>
     <th>Start date</th>
     <th>End date</th>
     <th></th>
@@ -13,8 +12,7 @@
 
 <% @trips.each do |trip| %>
   <tr>
-    <td><%= trip.name %></td>
-    <td><%= trip.user.name %></td>
+    <td><%= City.(trip.city_id) %></td>
     <td><%= trip.start_date %></td>
     <td><%= trip.end_date %></td>
     <td><%= link_to 'Show', trip %></td>
@@ -26,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New Trip', new_trip_path %>
+<%= link_to 'New Trip', trips_path, class: 'btn btn-success', method: 'post' %>

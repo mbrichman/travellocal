@@ -63,12 +63,16 @@
 
       </div>
       <div class="user-meta">
-        <h3>My Nework</h3>
+        <h3><%= link_to 'My Nework', network_path(current_user) %></h3>
 
       </div>
       <div class="user-meta">
         <h3>My Trips</h3>
-        <%= link_to 'Ask for Recommendations', '#myModal', :"data-target" => "#myModal", :"data-toggle" => "modal" %>
+        <h3><%= link_to 'Ask Your Friends', '#myModal', class: 'btn', :"data-target" => "#myModal", :"data-toggle" => "modal" %></h3>
+      </div>
+      <div class="user-meta">
+        <h3><%= link_to "Submit a New Place", new_place_path, class: 'btn' %></h3>
+
       </div>
       <!-- <div class="user-meta">
         <h3>Previous Trips</h3>
