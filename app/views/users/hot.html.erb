@@ -1,5 +1,21 @@
 <div class="primary favorites">
+  <% if RecommendationRequest.where(friend_id: current_user.id) %>
   <div class="row-fluid">
+    <% request = RecommendationRequest.where(friend_id: current_user.id).last %>
+    <div class="alert alert-success">
+      <%= User.find(request.user_id).name.capitalize %> has asked for a <%= link_to 'recommendation  ', request %>for a trip to <%= City.find(request.city_id).name.titleize %>
+    </div>
+    <% else %>
+
+    <% end %>
+    <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  </div>
+    <% end %>
+  <div class="row-fluid">
+
     <section class="span6 favorites">
       <h3>Friend's Favorites</h3>
       <ul>
@@ -70,7 +86,7 @@
           <% unless @level_one.include?(user.name) %>
            <%= form_tag connect_path, method: 'post' do %>
             <%= hidden_field_tag :connection_id, user.id %>
-            <%= submit_tag 'Connect' %>
+            <%= submit_tag 'Connect', class: 'btn' %>
             <% end %>
           <% end %>
         </td>

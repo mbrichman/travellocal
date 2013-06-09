@@ -48,7 +48,7 @@ class RecommendationRequestsController < ApplicationController
 
     respond_to do |format|
       if @recommendation_request.save
-        format.html { redirect_to @recommendation_request, notice: 'Recommendation request was successfully created.' }
+        format.html { redirect_to hot_url, notice: 'Recommendation request was successfully created.' }
         format.json { render json: @recommendation_request, status: :created, location: @recommendation_request }
       else
         format.html { render action: "new" }

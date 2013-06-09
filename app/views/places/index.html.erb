@@ -21,7 +21,7 @@
         <% @places.order("name").each do |place| %>
         <li>
           <% if place.photo.present? %>
-            <%= image_tag place.photo.url(:medium) %>
+            <%= link_to (image_tag place.photo.url(:medium)), place_path(place) %>
           <% else %>
             <img src="http://lorempixel.com/200/150/business/" />
           <% end %>
