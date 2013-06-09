@@ -115,6 +115,14 @@ end
 
   end
   def hot
-    @users = User.all
+    level1 = current_user.nth_level(1).uniq
+    level2 = current_user.nth_level(2).uniq
+    level3 = current_user.nth_level(3).uniq
+    level2.reject! {|n| level1.include?(n)}
+    level2.reject! {|n| current_user == n}
+    level3.reject! {|n| level2.include?(n)}
+    level3.reject! {|n| level1.include?(n)}
+    level3.reject! {|n| current_user == n}
+    @users = level2 + level3
   end
 end
