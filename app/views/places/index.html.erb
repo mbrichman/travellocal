@@ -1,7 +1,4 @@
 
-<% if notice %>
-  <div class="alert alert-success"><%= notice %></div>
-<% end %>
 <% if @favorite %>
   <% @favorite.errors.full_messages.each do |message| %>
   <div><%= message %></div>
