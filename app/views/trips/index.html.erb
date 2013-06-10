@@ -16,7 +16,7 @@
 
 <% @trips.each do |trip| %>
   <tr>
-    <td><%= City.(trip.city_id) %></td>
+    <td><%= City.find(trip.city_id).name %></td>
     <td><%= trip.start_date %></td>
     <td><%= trip.end_date %></td>
     <td><%= link_to 'Show', trip %></td>
