@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <%= @recommendation_request.user.name.capitalize %> is going to <%= @recommendation_request.city.name %> and wants to <%= @recommendation_request.description %>
+  <%= @recommendation_request.user.name.titleize %> is going to <%= @recommendation_request.city.name %> and wants to <%= @recommendation_request.description %>
 </p>
 
 <% if @recommendation_request.recommendations %>

@@ -15,7 +15,7 @@
   <div class="row-fluid">
 
     <section class="span6 favorites">
-      <h3>Friend's Favorites</h3>
+      <h3>Friends' Favorites</h3>
       <ul>
         <% current_user.friends_favorites.each do |place| %>
         <li><%= image_tag Place.find(place.first).photo.url(:thumb) %><%= link_to Place.find(place.first).name.titleize, Place.find(place.first) %> loved by
