@@ -13,7 +13,7 @@ end
 
     respond_to do |format|
       if @connection.save
-        format.html { redirect_to network_url(current_user), notice: 'Connection added.' }
+        format.html { redirect_to hot_url(current_user), notice: 'Connection added.' }
         format.json { render json: @users }
       else
         @users = User.all
@@ -115,6 +115,7 @@ end
 
   end
   def hot
+    @user = current_user
     level1 = current_user.nth_level(1).uniq
     level2 = current_user.nth_level(2).uniq
     level3 = current_user.nth_level(3).uniq

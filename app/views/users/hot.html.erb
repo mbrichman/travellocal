@@ -1,19 +1,17 @@
-<div class="primary favorites">
-  <% if RecommendationRequest.where(friend_id: current_user.id) %>
-  <div class="row-fluid">
-    <% request = RecommendationRequest.where(friend_id: current_user.id).last %>
-    <div class="alert alert-success">
-      <%= User.find(request.user_id).name.capitalize %> has asked for a <%= link_to 'recommendation  ', request %>for a trip to <%= City.find(request.city_id).name.titleize %>
-    </div>
-    <% else %>
-
-    <% end %>
-    <% if notice %>
+<div class="row-fluid primary favorites">
+  <% if notice %>
     <div class="alert alert-success">
       <%= notice %>
     </div>
-  </div>
-    <% end %>
+  <% end %>
+  <% if RecommendationRequest.where(friend_id: current_user.id).exists? %>
+    <div class="row-fluid">
+      <% request = RecommendationRequest.where(friend_id: current_user.id).last %>
+      <div class="alert alert-success">
+        <%= User.find(request.try(:user_id)).name.capitalize %> has asked for a <%= link_to 'recommendation  ', request %>for a trip to <%= City.find(request.city_id).name.titleize %>
+      </div>
+    </div>
+  <% end %>
   <div class="row-fluid">
 
     <section class="span6 favorites">
@@ -22,11 +20,11 @@
         <% current_user.friends_favorites.each do |place| %>
         <li><%= image_tag Place.find(place.first).photo.url(:thumb) %><%= link_to Place.find(place.first).name.titleize, Place.find(place.first) %> loved by
               <% count =  place[1].count %>
-              <% place[1].each_with_index do |review, i| %>
+              <% place[1].each_with_index do |favorite, i| %>
               <% if i + 1 == count %>
-                <%= link_to review.user.name.capitalize, review %>
+                <%= link_to favorite.user.name.capitalize, favorite.user %>
               <% else %>
-                <%= link_to review.user.name.capitalize + ',', review %>
+                <%= link_to favorite.user.name.capitalize + ',', favorite.user %>
 
               <% end %>
             <% end %>

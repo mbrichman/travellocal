@@ -14,7 +14,9 @@
           <%= image_tag @place.photo.url(:medium) %><br>
           <div >
             <span class="label"> <i class="icon-certificate icon-white"></i>&nbsp;Local Favorite</span>
-            <span class="label"> <%= friends_fave.count %> friends love this place</span>
+            <% if signed_in? %>
+              <span class="label"> <%= friends_fave.count %> friends love this place</span>
+            <% end %>
           </div>
 
         </div>
@@ -44,6 +46,8 @@
             Reviews
             <% if signed_in? %>
             <%= link_to 'Add a Review', new_review_path, class: 'btn btn-primary' %>
+            <% else %>
+              <h5>Sign in or Sign Up to Add a Review!</h5>
             <% end %>
           </h4>
           <ul>
