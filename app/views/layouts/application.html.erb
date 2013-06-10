@@ -6,6 +6,8 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Orienta|Special+Elite' rel='stylesheet' type='text/css'>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
   <div id="page">
@@ -68,6 +70,14 @@
       </div>
       <div class="user-meta">
         <h3><%= link_to 'My Trips', trips_url %></h3>
+        <% if current_user.recommendation_requests.exists %>
+          <nav>
+            <%= link_to current_user.recommendation_requests.last.city.name.titleize, current_user.recommendation_requests.last %>
+            <% if current_user.recommendation_requests.last.recommendations.count > 0  %>
+              <span class="badge badge-success"><%= current_user.recommendation_requests.last.recommendations.count %></span>
+            <% end %>
+          </nav>
+        <% end %>
         <h3><%= link_to 'Get Recommendations', '#myModal', class: 'btn', :"data-target" => "#myModal", :"data-toggle" => "modal" %></h3>
       </div>
       <div class="user-meta">

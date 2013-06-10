@@ -1,6 +1,6 @@
 
 <% if notice %>
-  <div><%= notice %></div>
+  <div class="alert alert-success"><%= notice %></div>
 <% end %>
 <% if @favorite %>
   <% @favorite.errors.full_messages.each do |message| %>
@@ -12,6 +12,21 @@
   <div><%= message %></div>
   <% end %>
 <% end %>
+<% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if signed_in? %>
+    <% if RecommendationRequest.where(friend_id: current_user.id).exists? %>
+      <div class="row-fluid">
+        <% request = RecommendationRequest.where(friend_id: current_user.id).last %>
+        <div class="alert alert-success">
+          <%= User.find(request.try(:user_id)).name.capitalize %> has asked for a <%= link_to 'recommendation  ', request %>for a trip to <%= City.find(request.city_id).name.titleize %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 
 <div class="listings">
   <h3>

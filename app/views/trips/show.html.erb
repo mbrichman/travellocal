@@ -1,27 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <p id="notice"><%= notice %></p>
+  <div class="row-fluid">
+    <div class="span3">
+      <%= image_tag 'Chicago Skyline.jpg' %>
+    </div>
+    <div class="span3">
+    <p>
+      <b>Trip to:</b>
+      <%= @trip.city.name %>
+    </p>
+    <p>
+      <b>Start date:</b>
+      <%= @trip.start_date.strftime("%B %e %Y") %>
+    </p>
 
-<p>
-  <b>Name:</b>
-  <%= @trip.name %>
-</p>
-<p>
-  <b>City:</b>
-  <%= @trip.city.name %>
-</p>
-<p>
-  <b>Start date:</b>
-  <%= @trip.start_date %>
-</p>
-
-<p>
-  <b>End date:</b>
-  <%= @trip.end_date %>
-</p>
-<h3>Places</h3>
-<ul>
-<% @trip.trip_places.each do |place| %>
-  <li><%= place.place.name.titleize %> <%= link_to raw("<i class=\"icon-remove\"></i>"), remove_from_trip_path(place), method: 'delete' %></li>
-<% end %>
-</ul>
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
-<%= link_to 'Back', trips_path %>
+    <p>
+      <b>End date:</b>
+      <%= @trip.end_date.strftime("%B %e %Y") %>
+    </p>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <h3>Places to Visit</h3>
+      <ul style="list-style: none">
+        <% @trip.trip_places.each do |place| %>
+          <li><%= image_tag place.place.photo.url(:thumb), style:"padding-right: 15px" %><%= link_to place.place.name.titleize, place.place %> <%= link_to raw("<i class=\"icon-remove\"></i>"), remove_from_trip_path(place), method: 'delete' %></li>
+        <% end %>
+      </ul>
+  </div>
+</div>

@@ -77,7 +77,7 @@ class WishlistsController < ApplicationController
     @wishlist.destroy
 
     respond_to do |format|
-      format.html { redirect_to wishlists_url }
+      format.html { redirect_to faves_url }
       format.json { head :no_content }
     end
   end

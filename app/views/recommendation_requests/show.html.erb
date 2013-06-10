@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <%= @recommendation_request.user.name.titleize %> is going to <%= @recommendation_request.city.name %> and wants to <%= @recommendation_request.description %>
+  <%= link_to @recommendation_request.user.name.titleize, @recommendation_request.user  %> is going to <%= @recommendation_request.city.name %> and asks "<%= @recommendation_request.description %>""
 </p>
 
 <% if @recommendation_request.recommendations %>
@@ -26,6 +26,6 @@
 <% if current_user == @recommendation_request.user %>
 
 <% else %>
-  <%= link_to 'Add a Recommendation', new_recommendation_path(request: @recommendation_request), class: 'btn btn-primary' %> <%= link_to 'Close', hot_path, class: 'btn' %>
+  <%= link_to 'Add a Recommendation', new_recommendation_path(request: @recommendation_request), class: 'btn btn-primary' %> <%= link_to 'Send', hot_path, class: 'btn' %>
 <% end %>
 

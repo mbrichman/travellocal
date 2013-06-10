@@ -24,6 +24,7 @@ class TripPlacesController < ApplicationController
       elsif params[:reco_ids]
         params[:reco_ids].each do |place|
           @trip_place = TripPlace.create(place_id: place, trip_id: trip.id)
+          # Recommendation.find_by_place_id(place).destroy
         end
       end
 

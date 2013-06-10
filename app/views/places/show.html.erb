@@ -4,8 +4,8 @@
     <h3>
       <%= @place.name.titleize %>
       <% if signed_in? && current_user == User.find(14) %>
-        <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-info' %>
-        <%= link_to 'Delete', place_path(@place), class: 'btn btn-danger', method: 'delete', confirm: 'Are you sure?' %>
+        <%= link_to raw("<i class=\"icon-edit\"></i>"), edit_place_path,  class: 'add-trip', :"data-toggle" => "tooltip", title: 'Edit Place' %>
+<!--         <%= link_to 'Delete', place_path(@place), class: 'btn btn-danger', method: 'delete', confirm: 'Are you sure?' %> -->
       <% end %>
     </h3>
     <div class="row-fluid">
@@ -22,8 +22,9 @@
         </div>
         <% if signed_in? %>
         <div class="actions-btns">
-            <%= link_to "Favorite", favorites_path(place_id: @place.id), method: 'post', class: 'btn' %>
-            <%= link_to 'Add to Trip', add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'btn btn-primary' %>
+            <%= link_to raw("<i class=\"icon-thumbs-up icon-large\"></i>"), favorites_path(place_id: @place.id), method: 'post', class: 'add-favorite', :"data-toggle" => "tooltip", title: 'Add to Favorites' %>
+            <%= link_to raw("<i class=\"icon-briefcase icon-large\"></i>"), wishlists_path(place_id: @place.id), method: 'post', class: 'add-wishlist', :"data-toggle" => "tooltip", title: 'Add to Wishlist' %>
+            <%= link_to raw("<i class=\"icon-plane icon-large\"></i>"), add_to_trip_path(place_id: @place.id, city_id: @place.city_id), method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Add to Trip' %>
           </div>
           <% end %>
         <div>
@@ -45,7 +46,7 @@
        <h4>
             Reviews
             <% if signed_in? %>
-            <%= link_to 'Add a Review', new_review_path, class: 'btn btn-primary' %>
+            <%= link_to raw("<i class=\"icon-plus icon-large\"></i>"), new_review_path,  class: 'add-trip', :"data-toggle" => "tooltip", title: 'Add a New Review' %>
             <% else %>
               <h5>Sign in or Sign Up to Add a Review!</h5>
             <% end %>
