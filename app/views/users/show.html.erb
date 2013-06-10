@@ -16,8 +16,8 @@
           <%= image_tag review.place.photo.url(:thumb) %>
           <div class="text">
             <p><%= link_to review.place.name.titleize, review.place %></p>
-            <p><%= distance_of_time_in_words(Date.today, review.created_at) %> ago</p>
-            <p><%= truncate(review.review_text, :length => 150, :separator => ' ') %></p>
+            <time><%= distance_of_time_in_words(Date.today, review.created_at) %> ago</time>
+            <p class="review-text"><%= truncate(review.review_text, :length => 150, :separator => ' ') %></p>
           </div>
         </li>
       <% end %>

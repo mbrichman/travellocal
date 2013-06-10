@@ -1,4 +1,4 @@
-<div class="row-fluid primary favorites">
+<div class="row-fluid primary" id="whats-hot">
   <% if notice %>
     <div class="alert alert-success">
       <%= notice %>
@@ -14,89 +14,105 @@
   <% end %>
   <div class="row-fluid">
 
-    <section class="span6 favorites">
-      <h3>Friends' Favorites</h3>
-      <ul>
-        <% current_user.friends_favorites.each do |place| %>
-        <li><%= image_tag Place.find(place.first).photo.url(:thumb) %><%= link_to Place.find(place.first).name.titleize, Place.find(place.first) %> loved by
-              <% count =  place[1].count %>
-              <% place[1].each_with_index do |favorite, i| %>
-              <% if i + 1 == count %>
-                <%= link_to favorite.user.name.capitalize, favorite.user %>
-              <% else %>
-                <%= link_to favorite.user.name.capitalize + ',', favorite.user %>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#favorites" data-toggle="tab">Favorites</a></li>
+      <li><a href="#wishlist" data-toggle="tab">Wishlist</a></li>
+      <li><a href="#network" data-toggle="tab">Network</a></li>
+    </ul>
 
-              <% end %>
-            <% end %>
-        </li>
+    <div class="tab-content">
+      <section class="tab-pane active" id="favorites">
+        <h3>Friends' Favorites</h3>
+        <ul>
+          <% current_user.friends_favorites.each do |place| %>
+            <li>
+              <%= image_tag Place.find(place.first).photo.url(:thumb) %>
 
-        <% end %>
-      </ul>
-    </section>
+              <div class="text">
+              
+                <%= link_to Place.find(place.first).name.titleize, Place.find(place.first) %> loved by
+                <% count =  place[1].count %>
+                <% place[1].each_with_index do |favorite, i| %>
+                  <% if i + 1 == count %>
+                    <%= link_to favorite.user.name.capitalize, favorite.user %>
+                  <% else %>
+                    <%= link_to favorite.user.name.capitalize + ',', favorite.user %>
+                  <% end %>
+                <% end %>
+              </div>
 
-    <section class="span6 favorites wishlist">
-      <h3>Friends' Wishlists</h3>
-      <ul>
-        <% current_user.friends.each do |friend| %>
-          <% unless friend.wishlists.count == 0 %>
-            <li><%= "#{friend.name.capitalize} wants to visit:" %></li>
-            <ul>
-              <% friend.wishlists.map {|fave| fave.place }.each do |place| %>
-                <li><%= image_tag place.photo.url(:thumb) %><%= link_to place.name.titleize, place %> in <%= place.city.name.titleize %></li>
-              <% end %>
-            </ul>
+            </li>
+
           <% end %>
-        <% end %>
-      </ul>
-    </section>
+        </ul>
+      </section>
+
+      <section class="tab-pane" id="wishlist">
+        <h3>Friends' Wishlists</h3>
+        <ul>
+          <% current_user.friends.each do |friend| %>
+            <% unless friend.wishlists.count == 0 %>
+              <li><%= "#{friend.name.capitalize} wants to visit:" %>
+                <ul>
+                  <% friend.wishlists.map {|fave| fave.place }.each do |place| %>
+                    <li><%= image_tag place.photo.url(:thumb) %><%= link_to place.name.titleize, place %> in <%= place.city.name.titleize %></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </section>
+
+      <section class="tab-pane" id="network">
+        <div class="span10 primary row-fluid favorites">
+          <h3>Other Activity in Your Network</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+                <th>Favorites</th>
+                <th>Wishlist</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            <% @users.each do |user| %>
+            <% @level_one = current_user.get_connections_by_level(1) %>
+              <tr>
+                <td><%= link_to user.name.capitalize, user_path(user.id) %></td>
+                <% if current_user == user %>
+                  <td></td>
+                <% else %>
+                <td><span class="badge badge-travel"><%= current_user.find_level(user) %></span></td>
+                <% end %>
+
+                <% if signed_in? && current_user == user %>
+                  <td></td>
+                  <% else %>
+                  <td>
+                    <% unless @level_one.include?(user.name) %>
+                     <%= form_tag connect_path, method: 'post' do %>
+                      <%= hidden_field_tag :connection_id, user.id %>
+                      <%= submit_tag 'Connect', class: 'btn' %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                <% end %>
+                <td><%= user.favorites.map {|f| Place.find(f.place_id).name.titleize}.join(', ') %></td>
+                <td><%= user.wishlists.map {|w| Place.find(w.place_id).name.titleize}.join(', ') %></td>
+
+
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
   </div> <!-- #END .row-fluid -->
 
-
-  <section class="network">
-    <div class="span10 primary row-fluid favorites">
-  <h3>Other Activity in Your Network</h3>
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th>Favorites</th>
-      <th>Wishlist</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @users.each do |user| %>
-  <% @level_one = current_user.get_connections_by_level(1) %>
-    <tr>
-      <td><%= link_to user.name.capitalize, user_path(user.id) %></td>
-      <% if current_user == user %>
-        <td></td>
-      <% else %>
-      <td><span class="badge badge-travel"><%= current_user.find_level(user) %></span></td>
-      <% end %>
-
-      <% if signed_in? && current_user == user %>
-        <td></td>
-        <% else %>
-        <td>
-          <% unless @level_one.include?(user.name) %>
-           <%= form_tag connect_path, method: 'post' do %>
-            <%= hidden_field_tag :connection_id, user.id %>
-            <%= submit_tag 'Connect', class: 'btn' %>
-            <% end %>
-          <% end %>
-        </td>
-      <% end %>
-      <td><%= user.favorites.map {|f| Place.find(f.place_id).name.titleize}.join(', ') %></td>
-      <td><%= user.wishlists.map {|w| Place.find(w.place_id).name.titleize}.join(', ') %></td>
-
-
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-</div>
-  </section>
 </div>

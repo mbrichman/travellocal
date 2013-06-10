@@ -225,7 +225,7 @@ label
   background-color: #00a9ac
 
 .badge-success
-  background-color: #cc3d79
+  background-color: #cc3d79  
 
 .caption
   margin-top: 15px
@@ -286,8 +286,33 @@ a:hover
         display: inline-block
         vertical-align: top
       img
-        margin-right: 1.5em
+        max-width: 100px
+        margin-right: 1em
       .text
-        max-width: 75%
+        max-width: 450px
+        width: 100%
         p
           margin: 0
+        time, .review-text
+          font-size: 80%
+        time
+          display: block
+          color: #aaaaaa
+
+/* What's HOT
+ **************************************************/
+#whats-hot
+  .nav-tabs
+    a
+      color: #333333
+  .tab-content
+    @extend .reviews
+    #wishlist
+      ul
+        li
+          ul
+            margin-top: 1em
+            li
+              margin: 0
+              padding: 0
+              border-bottom: 0
