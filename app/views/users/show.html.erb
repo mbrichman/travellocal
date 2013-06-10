@@ -7,12 +7,19 @@
   <% end %>
 </div>
 <div class="row-fluid">
-  <section class="span6 favorites">
+  <section class="span6 reviews">
     <h3><%= my_name %>Reviews</h3>
     <% @reviews = @user.reviews %>
     <ul>
       <% @reviews.each do |review| %>
-        <li><%= image_tag review.place.photo.url(:thumb) %> <%= link_to review.place.name.titleize, review.place %>  <%= distance_of_time_in_words(Date.today, review.created_at) %> ago<p><%= truncate(review.review_text, :length => 150, :separator => ' ') %></p></li>
+        <li>
+          <%= image_tag review.place.photo.url(:thumb) %>
+          <div class="text">
+            <p><%= link_to review.place.name.titleize, review.place %></p>
+            <p><%= distance_of_time_in_words(Date.today, review.created_at) %> ago</p>
+            <p><%= truncate(review.review_text, :length => 150, :separator => ' ') %></p>
+          </div>
+        </li>
       <% end %>
     </ul>
   </section>
