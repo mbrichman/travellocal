@@ -70,7 +70,7 @@
       </div>
       <div class="user-meta">
         <h3><%= link_to 'My Trips', trips_url %></h3>
-        <% if current_user.recommendation_requests.exists %>
+        <% if current_user.recommendation_requests.exists? %>
           <nav>
             <%= link_to current_user.recommendation_requests.last.city.name.titleize, current_user.recommendation_requests.last %>
             <% if current_user.recommendation_requests.last.recommendations.count > 0  %>
