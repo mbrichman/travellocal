@@ -20,13 +20,13 @@
   $('.dropdown-toggle').dropdown();
 
   // fade load in images
-  var imgs = $("#main img");
-  imgs.hide();
-  imgs.each(function() {
-    $(this).load(function() {
-      $(this).delay(400).fadeIn();
-    });
-  });
+  // var imgs = $("#main img");
+  // imgs.hide();
+  // imgs.each(function() {
+  //   $(this).load(function() {
+  //     $(this).delay(400).fadeIn();
+  //   });
+  // });
 
   $("a").tooltip();
 
