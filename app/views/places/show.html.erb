@@ -53,11 +53,10 @@
           </h4>
           <ul class="single-reviews-list">
             <% @place.reviews.each do |review| %>
-            <li class="visitor">
               <% if review.user.city == review.place.city %>
-                <%= link_to raw("<i class=\"icon-map-marker\"></i>"), '#', method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Local Reviewer' %>
+                <li class="local">
               <% else %>
-                <%= link_to raw("<i class=\"icon-road\"></i>"), '#', method: 'post', class: 'add-trip', :"data-toggle" => "tooltip", title: 'Local Reviewer' %>
+                <li class="visitor">
               <% end %>
               <%= link_to review.user.name.try(:titleize), user_path(review.user) %> said:<br> <%= review.review_text %></li>
             <% end %>
