@@ -3,7 +3,7 @@
 
     <h3>
       <%= @place.name.titleize %>
-      <% if signed_in? && current_user == User.find(14) %>
+      <% if signed_in? && current_user == User.first %>
         <%= link_to raw("<i class=\"icon-edit\"></i>"), edit_place_path,  class: 'add-trip', :"data-toggle" => "tooltip", title: 'Edit Place' %>
 <!--         <%= link_to 'Delete', place_path(@place), class: 'btn btn-danger', method: 'delete', confirm: 'Are you sure?' %> -->
       <% end %>
