@@ -299,6 +299,24 @@ a:hover
           display: block
           color: #aaaaaa
 
+/* Single Reviews List
+ **************************************************/
+.single-reviews-list
+  list-style: none
+  li.visitor, li.local
+    position: relative
+    &:before
+      display: block
+      position: absolute
+      top: 0
+      left: -1.5em
+      cursor: pointer
+      content: "\f041"
+      font-family: FontAwesome
+    &.visitor
+      &:before
+        content: "\f018"
+
 /* What's HOT
  **************************************************/
 #whats-hot
