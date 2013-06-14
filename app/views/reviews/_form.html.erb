@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-    <%= hidden_field_tag :place_id, params[:place_id] %>
+    <%= hidden_field_tag 'review[place_id]', params[:place_id] %>
   <div class="field">
     <h3><%= f.label :review_text, 'What did you think about ' + Place.find(params[:place_id]).name.titleize + '?' %></h3><br>
     <%= f.text_area :review_text %>
