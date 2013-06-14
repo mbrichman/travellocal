@@ -47,7 +47,7 @@
           <% unless @level_one.include?(user.name) %>
            <%= form_tag connect_path, method: 'post' do %>
             <%= hidden_field_tag :connection_id, user.id %>
-            <%= submit_tag 'Connect' %>
+            <%= submit_tag 'Follow' %>
             <% end %>
           <% end %>
         </td>

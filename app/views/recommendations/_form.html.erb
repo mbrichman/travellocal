@@ -18,6 +18,6 @@
     <%= select_tag :place_id, current_user.all_faves, :id, :title_name %>
   </div>
   <div class="actions">
-    <%= submit_tag 'Send' %>
+    <%= submit_tag 'Send', class: 'btn' %>
   </div>
 <% end %>

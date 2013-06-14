@@ -10,17 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+    <%= hidden_field_tag :place_id, params[:place_id] %>
   <div class="field">
-    <%= f.label :place_id %><br />
-    <%= f.collection_select :place_id, Place.all, :id, :name %>
-  </div>
-  <div class="field">
-    <%= f.label :review_text %><br />
+    <h3><%= f.label :review_text, 'What did you think about ' + Place.find(params[:place_id]).name.titleize + '?' %></h3><br>
     <%= f.text_area :review_text %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Add' ,class: 'btn' %>
   </div>
 <% end %>

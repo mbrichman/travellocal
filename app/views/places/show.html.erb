@@ -46,7 +46,7 @@
        <h4>
             Reviews
             <% if signed_in? %>
-            <%= link_to raw("<i class=\"icon-plus icon-large\"></i>"), new_review_path,  class: 'add-trip', :"data-toggle" => "tooltip", title: 'Add a New Review' %>
+            <%= link_to raw("<i class=\"icon-plus icon-large\"></i>"), new_review_path(place_id: @place.id),  class: 'add-trip', :"data-toggle" => "tooltip", title: 'Add a New Review' %>
             <% else %>
               <h5>Sign in or Sign Up to Add a Review!</h5>
             <% end %>

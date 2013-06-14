@@ -11,7 +11,7 @@
       <%= select_tag :place_id, options_from_collection_for_select(current_user.all_faves, :id, :name) %>
       <%= text_field_tag :comment, nil, placeholder: 'Add Comment', :size => 150, id: "chuckles" %>
       <%= hidden_field_tag :rr_id, params[:request] %>
-      <%= submit_tag 'Add' %>
+      <%= submit_tag 'Add', class: 'btn' %>
     <% end %>
   </li>
 

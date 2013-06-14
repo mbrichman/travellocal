@@ -29,7 +29,7 @@
               <%= image_tag Place.find(place.first).photo.url(:thumb) %>
 
               <div class="text">
-              
+
                 <%= link_to Place.find(place.first).name.titleize, Place.find(place.first) %> loved by
                 <% count =  place[1].count %>
                 <% place[1].each_with_index do |favorite, i| %>
@@ -96,7 +96,7 @@
                     <% unless @level_one.include?(user.name) %>
                      <%= form_tag connect_path, method: 'post' do %>
                       <%= hidden_field_tag :connection_id, user.id %>
-                      <%= submit_tag 'Connect', class: 'btn' %>
+                      <%= submit_tag 'Follow', class: 'btn' %>
                       <% end %>
                     <% end %>
                   </td>
