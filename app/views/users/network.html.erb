@@ -33,7 +33,7 @@
   <% @users.each do |user| %>
   <% @level_one = current_user.get_connections_by_level(1) %>
     <tr>
-      <td><%= link_to user.name.capitalize, user_path(user.id) %></td>
+      <td><%= link_to user.name.titleize, user_path(user.id) %></td>
       <% if current_user == user %>
         <td></td>
       <% else %>
@@ -47,16 +47,16 @@
           <% unless @level_one.include?(user.name) %>
            <%= form_tag connect_path, method: 'post' do %>
             <%= hidden_field_tag :connection_id, user.id %>
-            <%= submit_tag 'Follow' %>
+            <%= submit_tag 'Follow', class: 'btn' %>
             <% end %>
           <% end %>
         </td>
       <% end %>
       <td><%= user.city.try(:name) %></td>
       <td><%= user.connections.count %></td>
-      <td><%= user.get_connections_by_level(1).map {|name| name.capitalize}.join(', ') %></td>
-      <td><%= user.get_connections_by_level(2).map {|name| name.capitalize}.join(', ') %></td>
-      <td><%= user.get_connections_by_level(3).map {|name| name.capitalize}.join(', ') %></td>
+      <td><%= user.get_connections_by_level(1).map {|name| name}.join(', ').titleize %></td>
+      <td><%= user.get_connections_by_level(2).map {|name| name}.join(', ').titleize %></td>
+      <td><%= user.get_connections_by_level(3).map {|name| name}.join(', ').titleize %></td>
 
 
     </tr>

@@ -13,7 +13,7 @@
     <ul>
       <% @reviews.each do |review| %>
         <li>
-          <%= image_tag review.place.photo.url(:thumb) %>
+          <%= image_tag review.place.try(:photo).try(:url) %>
           <div class="text">
             <p><%= link_to review.place.name.titleize, review.place %></p>
             <time><%= distance_of_time_in_words(Date.today, review.created_at) %> ago</time>

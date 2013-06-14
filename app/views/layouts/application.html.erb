@@ -30,7 +30,7 @@
       </div>
       <div class="login-logout">
         <% if signed_in?  %>
-          <p>Welcome <%= link_to current_user.name.capitalize, user_path(current_user) %>!</p>
+          <p>Welcome <%= link_to current_user.name.titleize, user_path(current_user) %>!</p>
           <%= link_to 'Log Out', sessions_destroy_path, class: 'btn' %>
         <% else %>
           <%= link_to 'Log In', sessions_new_path, class: 'btn' %>
