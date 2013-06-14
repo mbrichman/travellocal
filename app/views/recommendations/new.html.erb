@@ -1,18 +1,15 @@
-<h2>New Recommendation</h2>
+<h2>Add Recommendation</h2>
 <%  %>
 
 <div>
   <%= @rr.user.name.capitalize %> is looking for recommenations for an upcoming trip to <%= @rr.city.name.capitalize %>
 </div>
 
-<ul>
-  <li>
+<div>
     <%= form_tag recommendations_path do %>
-      <%= select_tag :place_id, options_from_collection_for_select(current_user.all_faves, :id, :name) %>
-      <%= text_field_tag :comment, nil, placeholder: 'Add Comment', :size => 150, id: "chuckles" %>
+      <p><%= select_tag :place_id, options_from_collection_for_select(current_user.all_faves, :id, :name) %></p>
+      <p><%= text_area_tag :comment, nil, placeholder: 'Add Comment', :size => 150, id: "chuckles" %></p>
       <%= hidden_field_tag :rr_id, params[:request] %>
       <%= submit_tag 'Add', class: 'btn' %>
     <% end %>
-  </li>
-
-</ul>
+</div>
