@@ -1,4 +1,5 @@
 <div class="row-fluid">
+          <%= gmaps(@gmaps_options) %>
   <div class="span8 primary">
 
     <h3>
@@ -35,7 +36,8 @@
 
       </div>
       <div class="span6">
-        <%= gmaps4rails(@json) %>
+
+
         <div>
           <p>Category: <%= @place.category.try(:name).try(:titleize) %></p>
           <p><%= @place.address.try(:titleize) %></p>

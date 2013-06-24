@@ -29,6 +29,17 @@ end
   # GET /places/1.json
   def show
     @place = Place.find(params[:id])
+    @gmaps_options = {
+      "map_options" => {
+        "auto_zoom" => false,
+        "zoom" => 16,
+        "center_latitude" => @place.latitude,
+        "center_longitude" => @place.longitude
+      },
+      "markers" => {
+        "data" => @place.to_gmaps4rails
+      }
+    }
     @json = @place.to_gmaps4rails
 
     respond_to do |format|
