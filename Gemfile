@@ -15,6 +15,8 @@ end
 
 gem 'seed_dump'
 
+gem 'gmaps4rails'
+
 gem 'omniauth-facebook'
 
 gem 'paperclip'

@@ -29,6 +29,7 @@ end
   # GET /places/1.json
   def show
     @place = Place.find(params[:id])
+    @json = @place.to_gmaps4rails
 
     respond_to do |format|
       format.html # show.html.erb

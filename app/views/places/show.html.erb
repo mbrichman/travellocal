@@ -35,6 +35,7 @@
 
       </div>
       <div class="span6">
+        <%= gmaps4rails(@json) %>
         <div>
           <p>Category: <%= @place.category.try(:name).try(:titleize) %></p>
           <p><%= @place.address.try(:titleize) %></p>

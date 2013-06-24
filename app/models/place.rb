@@ -1,5 +1,5 @@
 class Place < ActiveRecord::Base
-  attr_accessible :address, :city_id, :name, :neighborhood, :url, :category_id, :description, :photo
+  attr_accessible :address, :city_id, :name, :neighborhood, :url, :category_id, :description, :photo, :latitude, :longitude
   belongs_to :city
   has_many :reviews
   belongs_to :category
@@ -10,6 +10,13 @@ class Place < ActiveRecord::Base
   validates :address, :city_id, :name, :neighborhood, presence: true
 
   before_save :downcase_form_input
+
+  acts_as_gmappable
+
+  def gmaps4rails_address
+  #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
+    self.address
+  end
 
   def downcase_form_input
     self.neighborhood = self.neighborhood.downcase
